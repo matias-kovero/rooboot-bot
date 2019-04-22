@@ -1,6 +1,6 @@
 # HupiKaljaHACK
 
-[![https://telegram.me/hupikalja_bot](https://img.shields.io/badge/💬%20Telegram-node__telegram__bot__api-blue.svg)](https://telegram.me/hupikalja_bot)
+[![https://telegram.me/hupikalja_bot](https://img.shields.io/badge/💬%20Telegram-HupiKalja__Bot-blue.svg)](https://telegram.me/hupikalja_bot)
 
 Documentation: [Node-telegram-bot-api]
 
