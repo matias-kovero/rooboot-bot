@@ -1,0 +1,5 @@
+---
+applications:
+ - name: telegram-bot
+   random-route: true
+   memory: 256M
