@@ -2,12 +2,26 @@ var express = require("express");
 var app = express();
 var cfenv = require("cfenv");
 var bodyParser = require('body-parser')
+const TelegramBot = require('node-telegram-bot-api');
+const TOKEN = process.env.TELEGRAM_TOKEN;
+const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 
+// No need to pass any parameters as we will handle the updates with Express
+const bot = new TelegramBot(TOKEN);
+
+// This informs the Telegram servers of the new webhook.
+bot.setWebHook(`${url}/bot${TOKEN}`);
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+// We are receiving updates at the route below!
+app.post(`/bot${TOKEN}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 let mydb, cloudant;
 var vendor; // Because the MongoDB and Cloudant use different API commands, we
@@ -19,6 +33,8 @@ var dbName = 'mydb';
 // MongoDB and Cloudant databases. These functions must be prefixed by a
 // value that may be assigned to the 'vendor' variable, such as 'mongodb' or
 // 'cloudant' (i.e., 'cloudantInsertOne' and 'mongodbInsertOne')
+
+
 
 var insertOne = {};
 var getAll = {};
@@ -193,4 +209,9 @@ app.use(express.static(__dirname + '/views'));
 var port = process.env.PORT || 3000
 app.listen(port, function() {
     console.log("To view your app, open this link in your browser: http://localhost:" + port);
+});
+
+// Just to ping!
+bot.on('message', msg => {
+  bot.sendMessage(msg.chat.id, 'I am alive!');
 });

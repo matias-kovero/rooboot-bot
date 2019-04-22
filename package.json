@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/matias-kovero/rooboot-bot/issues"
   },
-  "homepage": "https://github.com/matias-kovero/rooboot-bot#readme"
+  "homepage": "https://github.com/matias-kovero/rooboot-bot#readme",
+  "devDependencies": {
+    "node-telegram-bot-api": "^0.30.0"
+  }
 }
