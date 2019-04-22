@@ -1,6 +1,6 @@
 # HupiKaljaHACK
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4d9124c4-30d4-4c7c-b8e6-41d84f718f3d/deploy-status)](https://app.netlify.com/sites/hupikaljahack-telegram-bot/deploys)
+![coverage](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg?job=coverage)
 
 Documentation: [Node-telegram-bot-api]
 
