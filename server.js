@@ -152,11 +152,14 @@ bot.onText(/\/tapahtumat/, async msg => {
   const events = await getFullEvents();
   //console.log(events);
   for(var event of events.Tapahtumat) {
-    responseTxt += '_'+event.ajankohta.trim()+ '_\r\n';
-    responseTxt += '[' +event.nimi+ '](' +event.linkki + ') *'+event.kapasiteetti+'*\r\n';
-    responseTxt += event.sijainti === '' ? '' : '_' +event.sijainti+'_\r\n\r\n';
+    responseTxt += '_'+event.ajankohta.trim()+ '_ *'+event.kapasiteetti+'*\r\n';
+    responseTxt += '[' +event.nimi+ '](' +event.linkki +')';
+    responseTxt += event.sijainti === '' ? '\r\n' : '_' +event.sijainti+'_\r\n\r\n';
   };
-  bot.sendMessage(chatId, responseTxt, { parse_mode: 'Markdown' });
+  bot.sendMessage(chatId, responseTxt, { 
+    parse_mode: 'Markdown',
+    disable_web_page_preview: true
+  });
 });
 /** END --- DUMPPI TAPAHTUMAT  */
 
