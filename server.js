@@ -7,7 +7,7 @@ const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 
 // FUNCTIONS FROM UTILS
-const { getPiato, getLozzi } = require(__dirname + '/utils/semma');
+const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -33,13 +33,6 @@ var port = process.env.PORT || 3000
 app.listen(port, function() {
     console.log("To view your app, open this link in your browser: http://localhost:" + port);
 });
-bot.on('message', msg => {
-  const chatId = msg.chat.id;
-
-  const message = msg.text;
-
-  bot.sendMessage(chatId, message, {parse_mode: 'HTML'});
-});
 
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(/\/piato/, async (msg, match) => {      
@@ -49,7 +42,6 @@ bot.onText(/\/piato/, async (msg, match) => {
 
   bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
 });
-
 bot.onText(/\/lozzi/, async (msg, match) => {
   const chatId = msg.chat.id;
   var obj = await getLozzi();
@@ -57,7 +49,62 @@ bot.onText(/\/lozzi/, async (msg, match) => {
 
   bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
 });
+bot.onText(/\/maija/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getMaija();
+  var responseTxt = parseSemma(msg, obj);
 
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/libri/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getLibri();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/tilia/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getTilia();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/syke/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getSyke();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/rentukka/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getRentukka();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/ylisto/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getYlisto();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/fiilu/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getFiilu();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+bot.onText(/\/ilokivi/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var obj = await getIlokivi();
+  var responseTxt = parseSemma(msg, obj);
+
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
 /** END --- SEMMA RESTAURANTS --- */
 
 // Supporting function to easily parse Semma API objects
