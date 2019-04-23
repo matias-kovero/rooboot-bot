@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require('body-parser')
 const TelegramBot = require('node-telegram-bot-api');
-const TOKEN = process.env.TELEGRAM_TOKEN || "711574376:AAG5XYNeBgZhZO3jB5anMmgI_3c9LlopcU4";
+const TOKEN = process.env.TELEGRAM_TOKEN;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 
