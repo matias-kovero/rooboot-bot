@@ -9,6 +9,7 @@ var port = process.env.PORT || 3000;
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
+const lk_obj;
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -37,7 +38,7 @@ app.listen(port, function() {
 
 // ladataan laulukirja kun botti käynnistyy
 const startBot = async () => {
-  const lk_obj = await getLaulukirja();
+  lk_obj = await getLaulukirja();
 };
 
 /**  START ---  SEMMA RESTAURANTS --- */
