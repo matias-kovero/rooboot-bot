@@ -17,6 +17,366 @@
         "En liten fågel satt en gång\noch sjöng i furuskog.\nHan hade sjungit dagen lång\nmen dock ej sjungit nog.\nVad sjöng den lilla fågeln då?\nJO!\n",
         "Helan går!\nSjung hopp faderallan lallan lej!\nHelan går!\nSjung hopp faderallan lallan lej!\nOch den som inte helan tar,\nHan ej heller halvan får.\nHelan går!\nSjung hopp faderallan lallan lej!\nHEJ!\n"
       ]
+    },
+    {
+      "numero": 1,
+      "nimi": "Finlandia-hymni",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 2,
+      "nimi": "Maamme-laulu",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 3,
+      "nimi": "Gaudeamus igitur",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 4,
+      "nimi": "Nii minä neitonen",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 5,
+      "nimi": "Tämän talon onneksi",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 6,
+      "nimi": "Jääkärinmarssi",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 7,
+      "nimi": "Punakaartin marssi",
+      "kategoria": "Juhlalliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 8,
+      "nimi": "Pieni episodi",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 9,
+      "nimi": "Ystävä sä snapsien",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 10,
+      "nimi": "Juomalaulu laulutaidottomille",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 11,
+      "nimi": "Turkulainen juomalaulu",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 12,
+      "nimi": "Jänis istui maassa",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 13,
+      "nimi": "Viinaa, vettä",
+      "kategoria": "Snapsilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 14,
+      "nimi": "Pienet konjakit",
+      "kategoria": "Avec-laulut",
+      "sanat": []
+    },
+    {
+      "numero": 15,
+      "nimi": "Henkilökunta",
+      "kategoria": "Avec-laulut",
+      "sanat": []
+    },
+    {
+      "numero": 16,
+      "nimi": "Punschen kommer",
+      "kategoria": "Avec-laulut",
+      "sanat": []
+    },
+    {
+      "numero": 17,
+      "nimi": "Täällä jallutähden alla",
+      "kategoria": "Avec-laulut",
+      "sanat": []
+    },
+    {
+      "numero": 18,
+      "nimi": "Jallumaa",
+      "kategoria": "Avec-laulut",
+      "sanat": []
+    },
+    {
+      "numero": 19,
+      "nimi": "Unkarin viini",
+      "kategoria": "Viinilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 20,
+      "nimi": "Paavi ja sulttaani",
+      "kategoria": "Viinilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 21,
+      "nimi": "Skumppaa punkun kaa",
+      "kategoria": "Viinilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 22,
+      "nimi": "Carillo",
+      "kategoria": "Viinilaulut",
+      "sanat": []
+    },
+    {
+      "numero": 23,
+      "nimi": "Oodi sitoutumattomalle",
+      "kategoria": "Poliittiset ja kansainväliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 24,
+      "nimi": "Minun työtäni kopo on",
+      "kategoria": "Poliittiset ja kansainväliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 25,
+      "nimi": "Eurovision",
+      "kategoria": "Poliittiset ja kansainväliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 26,
+      "nimi": "Internationalen",
+      "kategoria": "Poliittiset ja kansainväliset laulut",
+      "sanat": []
+    },
+    {
+      "numero": 27,
+      "nimi": "Pikku kakkonen",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 28,
+      "nimi": "Karhuviinaa",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 29,
+      "nimi": "Meidän laivassa",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 30,
+      "nimi": "No, onkos tullut kesä",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 31,
+      "nimi": "Pikku kakkonen",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 32,
+      "nimi": "Pingviinitanssi",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 33,
+      "nimi": "Jos sun lysti on",
+      "kategoria": "Lastenlaulut",
+      "sanat": []
+    },
+    {
+      "numero": 34,
+      "nimi": "Tänään otetaan",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 35,
+      "nimi": "Lapin kulta",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 36,
+      "nimi": "Koff",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 37,
+      "nimi": "Viinamaa",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 38,
+      "nimi": "Jos (e)ukkosi kieltää sua juomasta",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 39,
+      "nimi": "Silja Line",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 40,
+      "nimi": "Ken ompi fuksi",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 41,
+      "nimi": "On tänään sitsipäivä",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 42,
+      "nimi": "Pieniä käärmeitä",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 43,
+      "nimi": "Sen siiderin",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 44,
+      "nimi": "Leukojen välliin",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 45,
+      "nimi": "Vi ska dricka hela natten",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 46,
+      "nimi": "Livet är härligt",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 46,
+      "nimi": "Livet är härligt",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 47,
+      "nimi": "K.O.S.S.U.",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 48,
+      "nimi": "Nämä lääkkeet",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 49,
+      "nimi": "Fuksit sammuu",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 50,
+      "nimi": "Dumpparit ryypätään",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 51,
+      "nimi": "All the drinks",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 52,
+      "nimi": "Ryyppää",
+      "kategoria": "Illalla",
+      "sanat": []
+    },
+    {
+      "numero": 53,
+      "nimi": "Minnet",
+      "kategoria": "Aamulla",
+      "sanat": []
+    },
+    {
+      "numero": 54,
+      "nimi": "Krapularyyppy",
+      "kategoria": "Aamulla",
+      "sanat": []
+    },
+    {
+      "numero": 55,
+      "nimi": "Huutolaatta",
+      "kategoria": "Aamulla",
+      "sanat": []
+    },
+    {
+      "numero": 56,
+      "nimi": "Aqua vera",
+      "kategoria": "Aamulla",
+      "sanat": []
+    },
+    {
+      "numero": 57,
+      "nimi": "Testamentti",
+      "kategoria": "Loputtomat laulut",
+      "sanat": []
+    },
+    {
+      "numero": 58,
+      "nimi": "Koskenkorva",
+      "kategoria": "Loputtomat laulut",
+      "sanat": []
+    },
+    {
+      "numero": 59,
+      "nimi": "Yogi Bear",
+      "kategoria": "Loputtomat laulut",
+      "sanat": []
     }
   ]
 }
