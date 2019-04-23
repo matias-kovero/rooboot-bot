@@ -8,6 +8,7 @@ var port = process.env.PORT || 3000;
 
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
+const getLaulukirja = require(__dirname + '/utils/laulukirja');
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -33,6 +34,11 @@ var port = process.env.PORT || 3000
 app.listen(port, function() {
     console.log("To view your app, open this link in your browser: http://localhost:" + port);
 });
+
+// ladataan laulukirja kun botti käynnistyy
+const startBot = async () => {
+  const lk_obj = await getLaulukirja();
+};
 
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(/\/piato/, async (msg, match) => {      
@@ -107,6 +113,35 @@ bot.onText(/\/ilokivi/, async (msg, match) => {
 });
 /** END --- SEMMA RESTAURANTS --- */
 
+/** LAULUKIRJA */
+bot.onText(/\/laulu(.+)/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  var responseTxt = '';
+  const haku = match[1].trim(); // Tämä voi olla numero tai nimi
+  const laulut = lk_obj.laulukirja;
+  if(typeof haku == 'number') { // Haetaan numerolla
+    for(var laulu of laulut) {
+      if(laulu.numero == haku) {
+        responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
+        for(var sae of laulu.sanat) {
+          responseTxt += sae+'\r\n';
+        }
+      }
+    }
+  } else { // Haetaan nimellä
+    for(var laulu of laulut) {
+      if(laulu.nimi == haku) {
+        responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
+        for(var sae of laulu.sanat) {
+          responseTxt += sae+'\r\n';
+        }
+      }
+    }
+  }
+  if(responseTxt == '') responseTxt = 'Ei löydy';
+  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+});
+
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
   var num = 0;
@@ -140,3 +175,5 @@ function parseSemma(msg, obj) {
   }
   return responseTxt;
 };
+
+startBot();
