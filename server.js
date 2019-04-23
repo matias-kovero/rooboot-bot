@@ -9,6 +9,7 @@ var port = process.env.PORT || 3000;
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
+const getFullEvents = require(__dirname + '/utils/events');
 var lk_obj;
 
 // No need to pass any parameters as we will handle the updates with Express
@@ -143,6 +144,21 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   if(responseTxt == '') responseTxt = 'Ei löydy!';
   bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
 });
+
+/** START --- DUMPPI TAPAHTUMAT */
+bot.onText(/\/tapahtumat/, async msg => {
+  const chatId = msg.chat.id;
+  responseTxt = "";
+  const events = await getFullEvents();
+  //console.log(events);
+  for(var event of events.Tapahtumat) {
+    responseTxt += event.ajankohta+ '\r\n';
+    responseTxt += event.nimi+' *'+event.kapasiteetti+'*\r\n';
+    responseTxt += '_'+event.sijainti+'_\r\n\r\n';
+  };
+  bot.sendMessage(chatId, responseTxt, { parse_mode: 'Markdown' });
+});
+/** END --- DUMPPI TAPAHTUMAT */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
