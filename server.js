@@ -152,7 +152,7 @@ bot.onText(/\/tapahtumat/, async msg => {
   const events = await getFullEvents();
   //console.log(events);
   for(var event of events.Tapahtumat) {
-    responseTxt += event.ajankohta+ '\r\n';
+    responseTxt += '_'+event.ajankohta.trim()+ '_\r\n';
     responseTxt += event.nimi+' *'+event.kapasiteetti+'*\r\n';
     responseTxt += '_'+event.sijainti+'_\r\n\r\n';
   };
