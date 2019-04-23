@@ -142,7 +142,10 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
     }
   }
   if(responseTxt == '') responseTxt = 'Ei löydy!';
-  bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
+  bot.sendMessage(chatId, responseTxt, {
+    parse_mode: 'Markdown',
+    disable_web_page_preview: true
+  });
 });
 
 /** START --- DUMPPI TAPAHTUMAT */

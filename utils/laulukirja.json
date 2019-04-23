@@ -315,15 +315,22 @@
       "nimi": "Meidän laivassa",
       "kategoria": "Lastenlaulut",
       "sanat": [
-        "",
-        ""
+        "Meidän laivassa, meidän laivassa \non suuri reikä pohjassa.\nJa se uppoaa, ja se uppoaa,\nsiis kaikki pumppaamaan\n",
+        "1. Ykköspumppu (oikea käsi)\n2. Kakkospumppu (vasen käsi)\n3. Kolmospumppu (oikea jalka)\n4. Nelospumppu (vasen jalka)\n5. Vitospumppu (pää)\n6. Kutospumppu (perse)\n"
       ]
     },
     {
       "numero": 30,
       "nimi": "No, onkos tullut kesä",
       "kategoria": "Lastenlaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "No, onkos tullut kesä \nNYT talven keskelle,\nja laitetaankos pesä \nmyös pikkulinnuille?\n",
+        "NYT kuusi kynttilöineen \non käyNYT kukkimaan,\npimeitä talven öitä näin \nehkä valaistaan.\n",
+        "Ja vanhakin NYT nuortuu \nkuin lapsi leikkimään,\nNYT koukkuselkä suortuu \nniin kaikk’ on mielissään.\n",
+        "Ja hyvä, lämmin, hellä \non mieli jokaisen,\noi jospa ihmisellä \nois joulu ainainen!\n",
+        "",
+        ""
+      ]
     },
     {
       "numero": 31,
