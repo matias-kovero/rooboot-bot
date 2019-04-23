@@ -115,7 +115,21 @@ bot.onText(/\/ilokivi/, async (msg, match) => {
 });
 /** END --- SEMMA RESTAURANTS --- */
 
-/** LAULUKIRJA */
+/** START --- LAULUKIRJA --- */
+bot.onText(/\/laulukategoriat/), async (msg, match) => {
+  const chatId = msg.chat.id;
+  var responseTxt = '';
+  for(var laulu of laulut) {
+    if(!responseTxt.match(laulu.kategoria)) responseTxt += laulu.kategoria + '\r\n';
+  };
+
+  if(responseTxt == '') responseTxt = 'Ei löydy!';
+  bot.sendMessage(chatId, responseTxt, {
+    parse_mode: 'Markdown',
+    disable_web_page_preview: true
+  });
+}
+
 bot.onText(/\/laulu(.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   var responseTxt = '';
@@ -147,6 +161,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
     disable_web_page_preview: true
   });
 });
+/** END --- LAULUKIRJA --- */
 
 /** START --- DUMPPI TAPAHTUMAT */
 bot.onText(/\/tapahtumat/, async msg => {
