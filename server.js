@@ -158,7 +158,7 @@ bot.onText(/\/tapahtumat/, async msg => {
   };
   bot.sendMessage(chatId, responseTxt, { parse_mode: 'Markdown' });
 });
-/** END --- DUMPPI TAPAHTUMAT */
+/** END --- DUMPPI TAPAHTUMAT  */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
