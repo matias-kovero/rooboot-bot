@@ -242,43 +242,82 @@
       "numero": 23,
       "nimi": "Oodi sitoutumattomalle",
       "kategoria": "Poliittiset ja kansainväliset laulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Heittäkäämme hitihatit hissikuiluihin,\nheittäkäämme hitihatit hissikuiluihin,\nheittäkäämme hitihatit hissikuiluihin,\nnyt on aika muutoksen!\n",
+        "Täyttäkäämme uima-altaat kepun verellä...\n",
+        "Kommareitten paikka löytyy Jyväsjärvestä...\n",
+        "Kokkareita kitkemme pois ruispelloista...\n",
+        "Vihreitä me pudotamme biokompostiin...\n",
+        "Demareitten touhu on kuin Linnanmäellä...\n",
+        "Kristilliset palaa kirkkojensa mukana...\n",
+        "Perussuomalaiset löytyy raastuvasta...\n",
+        "Svenska gruppen työnnetään me ruotsinlaivalle...\n",
+        "Lääkäriksi pääsee ilman koulutustakin...\n"
+      ]
     },
     {
       "numero": 24,
       "nimi": "Minun työtäni kopo on",
       "kategoria": "Poliittiset ja kansainväliset laulut",
-      "sanat": ["",""]
+      "sanat": [
+        ":,: Minun työtäni KOPO on;\nolen HALLOPEDi! :,:\n:,: Hei luulia illallaa,\nolen HALLOPEDi! :,:\n",
+        ":,: Silmät siit' saan punaiset\nsekä kieronlaiset. :,:\n:,: Hei luulia illalla,\nsekä kieronlaiset. :,:\n",
+        ":,: Mull' on kahvit paidalla,\nJallun kaadoin kurkkuun. :,:\n:,: Hei luulia illalla,\nJallun kaadoin kurkkuun. :,:\n",
+        ":,: Kun minä menen kokoukseen,\nniin dekaanitkin nauraa. :,:\n:,: Hei luulia hah hah haa,\nniin dekaanitkin nauraa. :,:\n"
+      ]
     },
     {
       "numero": 25,
       "nimi": "Eurovision",
       "kategoria": "Poliittiset ja kansainväliset laulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Ranskassa juodaan viiniä,\nSaksassa olutta, Venäjällä vodkaa.\nSuomessa juodaan kaikkea,\nsiis malja sille nostakaa!\n",
+        "Norjassa syödään lunta,\nRuotsissa loskaa, Venäjällä paskaa.\nSuomessa syödään kaikkea,\nsiis malja sille nostakaa!\n",
+        "Norjassa poltetaan kirkkoja,\nSaksassa kirjoja, Venäjällä vodkaa.\nHollannissa poltetaan kaikkea,\nsiis malja sille nostakaa!\n"
+      ]
     },
     {
       "numero": 26,
       "nimi": "Internationalen",
       "kategoria": "Poliittiset ja kansainväliset laulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Mera brännvin i glasen,\nmera glas på vårt bord,\nmera bord på kalasen,\nmer kalas på vår jord.\n",
+        "Mera jordar kring måne,\nmera måner till Mars,\nmera marscher till Skåne,\nmera Skåne, bevars, bevars, bevars!\n",
+        "Lisää viinaa mun lasiin,\nlisää laseja pöydälle.\nLisää pöytiä näihin juhliin,\nlisää juhlia kansalle.\n",
+        "Lisää kansaa Suomeen,\nlisää Suomea päälle maan.\nlisää maata Suur-Suomelle,\nmarssitaan, marssitaan, Karjalaan,\nKARJALAAN!\n"
+      ]
     },
     {
       "numero": 27,
       "nimi": "Pikku kakkonen",
       "kategoria": "Lastenlaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Pikku kakkosen posti\npostilokero 347, 33101 Tampere 10\nPikku kakkosen posti\n",
+        "Pikku kakkosen URL\nhttp://www.yle.fi\n/~ransu\n",
+        "Ammattikorkeakoulu\npostilokero; mitä sen on väliä,\njoku v*tun tradenomi: tutkinto kuitenkin...\nAmmattikorkeasaari\n"
+      ]
     },
     {
       "numero": 28,
       "nimi": "Karhuviinaa",
       "kategoria": "Lastenlaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Ottaisin minä Karhuviinaa, \njos vain pullon saisin.\n:,: Koko pullon ryyppäisin \nja sitten oksentaisin :,:\n",
+        "Tiu-tau tiu-tau tili tali tittan,\njuodaan rommia kolalla.\n:,: Sitten kun ollaan koko pullo juotu,\nniin ollaan perseet olalla. :,:\n",
+        "Vaan eipä taida meidän äiti\nKarhuviinaa ottaa.\n:,: Eihän se edes usko, että\nKarhuviina on totta. :,:\n",
+        "Tiu-tau...\n",
+        "Syksyn tullen sieniä kasvaa\nvarpaanväleissämme.\nEikä me sukkia vaihdeta\nei ainakaan keskenämme.\nEikä me sukkia vaihdeta\nkuin korkeintaan keskenämme.\n",
+        "Tiu-tau...\n"
+      ]
     },
     {
       "numero": 29,
       "nimi": "Meidän laivassa",
       "kategoria": "Lastenlaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "",
+        ""
+      ]
     },
     {
       "numero": 30,
