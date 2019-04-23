@@ -2,19 +2,19 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const getFullEvents = async () => {
-  let events;
-  try {
-    const response = await axios.get('https://dumppi-tapahtumat.arttumat.now.sh/tapahtumat');
-    if (response.status === 200) {
-      const html = response.data;
-      events = html;
-    } else {
-      throw new Error(`Error, response status ${response.status}`);
+    let events;
+    try {
+        const response = await axios.get('https://dumppi-tapahtumat.arttumat.now.sh/tapahtumat');
+        if (response.status === 200) {
+            const html = response.data;
+            events = html;
+        } else {
+            throw new Error(`Error, response status ${response.status}`);
+        }
+    } catch (error) {
+        return [];
     }
-  } catch (error) {
-    return [];
-  }
-  return events;
+    return events;
 }
 
 module.exports = getFullEvents;
