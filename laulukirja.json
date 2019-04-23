@@ -1,0 +1,35 @@
+{
+    "Tekijänoikeudet": "Dumppi ry 2016",
+    "Editointi": [
+        "Renne Hirsimäki",
+        "Juho Leskinen",
+        "Jammi Vesterinen"
+    ],
+    "Grafiikka": "Noora Ahonen",
+    "JSON": "Matias Kovero (2019)",
+    "Alkusanat": "Eteesi avautuva Dumpin virallinen laulukirja edustaa dumppareiden omaksumaa sitsikulttuuria sen monissa eri muodoissa. Kirjan sisältö on kattava läpileikkaus erilaisissa akateemisissa juhlissa esitettävistä lauluista. Laulut ovat kirjan käyttäjiä ajatellen jaettu eri kategorioihin, joiden avulla voi löytää tilanteeseen kuin tilanteeseen sopivan kappaleen. Kategorioiden välille on pyritty löytämään hyvä tasapaino, minkä lisäksi jaottelussa on painotettu Dumpin sitsikulttuuria. Laulujen löytämisen helpottamiseksi kirjan alkuun on painettu sisällysluettelo ja loppuun aakkostettu hakemisto. Joidenkin suosittujen laulujen jälkeen kirjasta löytyy tyhjiä sivuja. Näille sivuille on mahdollista taltioida oman luovuuden helmet erityisesti lisäsäkeistöjen muodossa. Näin uudet säkeistöt on helpompi muistaa myös seuraavilla sitseillä. Toivotamme sinulle ikimuistoisia hetkiä kirjan parissa! Juho Leskinen & projektiryhmä",
+    "Laulukirja": [
+        {
+            "numero": 0,
+            "nimi": "Helan går",
+            "kategoria": "Helan går",
+            "sanat": [
+                "En liten fågel satt en gång\n
+                och sjöng i furuskog.\n
+                Han hade sjungit dagen lång\n
+                men dock ej sjungit nog.\n
+                Vad sjöng den lilla fågeln då?\n
+                JO!\n,
+                Helan går!\n
+                Sjung hopp faderallan lallan lej!\n
+                Helan går!\n
+                Sjung hopp faderallan lallan lej!\n
+                Och den som inte helan tar,\n
+                Han ej heller halvan får.\n
+                Helan går!\n
+                Sjung hopp faderallan lallan lej!\n
+                HEJ!\n"
+            ]
+        }
+    ]
+}
