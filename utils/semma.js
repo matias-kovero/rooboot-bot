@@ -20,12 +20,6 @@ const getPiato = async () => {
 const getLozzi = async () => {
   let menu;
   let url = 'https://www.semma.fi/modules/json/json/Index?costNumber=1401&language=fi';
-  menu = await getRavintola(url);
-  return menu;
-}
-
-async function getRavintola(url) {
-  let menu;
   try {
     const response = await axios.get(url);
     if (response.status === 200) {
