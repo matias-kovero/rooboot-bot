@@ -737,45 +737,89 @@
       "nimi": "Intian kuu",
       "kategoria": "Populäärikulttuuri",
       "sanat": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "Intiassa kuukin on kuumempi\noo-hiio-hei\nKuin aurinko meillä, mutta suurempi\noo-hiio-hei\nKerran se lakkini sytytti\noo-hiio-hei\nja hiukset poltti mun päästäni\noo-hiio-hei\n",
+        ":,: Hei juttele sinä vaan,\nkyllä sinut tunnetaan\nJa vaikka sen valeheksi vannotkin\nniin kyllä sua uskotaan :,:\n",
+        "Linnut siellä paistuivat lennossa\nja voi siellä myytiin pullossa\nJa jok'ikinen kala joka ongittiin\nOli keitettynä kun se nostettiin\n",
+        "Hei juttele...\n",
+        "Intiassa ankkuri nostettiin\nja Punaiseen Mereen taas laskettiin\nJa sen minä voin vaikka vannoa,\nettä seilasimme puolukkahillossa.\n",
+        "Hei juttele...\n",
+        "Näin minä Niilin rannikot\nnäin krokotiilit ja faaraot\nSiellä muumiot eli niinkuin ennenkin\nja lähettivät terveiset teillekin\n",
+        "Hei juttele...\n"
       ]
     },
     {
       "numero": 67,
       "nimi": "Levanteri",
       "kategoria": "Populäärikulttuuri",
-      "sanat": ["",""]
+      "sanat": [
+        "Levanteri kysy sitä panemisen hintaa,\nemäntä se siveli vain pimppinsä pintaa.\n",
+        "Hura-huh-hah-hei, ei nähty näillä mailla\nole Levanterin kullia komiampaa.\n",
+        "Levanteri kysy paljon naiminen maksaa,\nemäntä se sano, että kymppi on taksa.\nHura-huh-hah-hei ...\n",
+        "Levanteri sano, että kymppi on liikaa,\nkäytetystä tavarasta vitonenkin piisaa.\nHura-huh-hah-hei ...\n",
+        "Emäntä se sano, ett' jos kymppi on liikaa,\nniin mene sinä navettaan ja nai karjapiikaa.\nHura-huh-hah-hei ...\n",
+        "Isäntä se sängyn alla kyttäsi ja vahti,\nmikä oli Levanterin panemisen tahti.\nHura-huh-hah-hei ...\n",
+        "Piika rupes' hädissänsä kyselemään häitä,\nLevanteri pumppasi sen täyteen nutipäitä.\nHura-huh-hah-hei ...\n",
+        "Levanteri pihamaalla hyppäsi ja loikki,\npaita oli veressä ja kyrpä oli poikki.\nHura-huh-hah-hei, ei nähdä näillä mailla\nenää Levanterin kullia komiampaa.\n"
+      ]
     },
     {
       "numero": 68,
       "nimi": "Pohjolan pidot",
       "kategoria": "Populäärikulttuuri",
-      "sanat": ["",""]
+      "sanat": [
+        "Pohjolassa kansa on sen kaamoksensa vanki\nPimeässä askarrellen paljoa ei hanki\nMutta läpi talven seisoo tanakasti kanki\nJa jumalauta kaikki siellä silloin nai\n",
+        "Olin kerran kutsuttuna juhlissa mä näissä\nSellaista ei nähty edes Onassiksen häissä\nKulli oli käsittelyn jälkeen viikon jäissä\nJa lääkärikin tuumi että sitä puri hai\n",
+        ":,: Siellä juotiin, siellä nussittiin\nKeväällä tyhjät oli pussit niin :,:\n",
+        "Juhlat alkoi siten että isäntä löi pöytää\nMulkullansa tietysti se helppo oli löytää\nHeti piikalikka siihen perseinensä töytää\nPöydän antimia ryhtyi nuolemaan\n",
+        "Emäntä taas vieraallensa pyllistää ja vinkkaa\nKädellänsä jalkoväliään kuin kone hinkkaa\nReumastansa huolimatta renki lujaa kinkkaa\nEi vieras ehdi ensimmäiseen varviin ollenkaan\n",
+        ":,: Siellä juotiin, siellä nussittiin\nKeväällä tyhjät oli pussit niin :,:\n",
+        "Minullekin munaa kylään tullut leski käski\nJoku siltä liivit avas, pirtin täytti läski\nPillu tuoksui tuoreelta kuin viikon käynyt mäski\nSiitä laatu enää tuskin paranee\n",
+        "Kaikki meni yleiseksi viikseen vetelyksi\nSähköä ei lainkaan kynttilöitäkin vain yksi\nSekin tuli jonkun persereikään työnnetyksi\nJa eiköhän se pimeässä mulkun virkaa tee\n",
+        ":,: Siellä juotiin, siellä nussittiin\nKeväällä tyhjät oli pussit niin :,:\n"
+      ]
     },
     {
       "numero": 69,
       "nimi": "Juodaan viinaa",
       "kategoria": "Populäärikulttuuri",
-      "sanat": ["",""]
+      "sanat": [
+        "Kolmen tähden jallupullon juotuaan\nKaksi miestä tutkii muistikirjojaan.\nToinen tuskailee, kun sivut täynnä on,\non toisen kirja pitkään ollut sivuton.\n",
+        "Vaimo liikaa mieheltänsä kyselee\nEi kun pullo pöytään, sitten miettimään!\nLapset nukkuu, pimeys vain tihenee\nVaimo vastauksen pian saa äijältään:\n",
+        "Juodaan viinaa,\nTullaan viisaammiksi näin.\nJuodaan viinaa,\nOn todellisuus piinaa hetkittäin\nSelvin päin.\n",
+        "Vanhus nuoren pastorin saa sekaisin\nSiltä kuolemasta liikaa udellen.\nTarjoilu on niukkaa kanssa öylätin\nVanhus kiittää, mutta jälkeen aamenen\n",
+        "Juodaan viinaa,\nTullaan viisaammiksi näin.\nJuodaan viinaa,\nOn todellisuus piinaa hetkittäin\nSelvin päin.\n",
+        "Joillakin on liian paljon edessään,\nToiset menneisyyttään irti karistaa.\nYksi uinut on kuin kalat vedessä\nJa toinen naapureitansakin aristaa.\n",
+        "Mut juodaan viinaa,\nTullaan viisaammiksi näin.\nJuodaan viinaa,\nOn todellisuus piinaa hetkittäin.\n",
+        "Juodaan viinaa,\nTullaan viisaammiksi näin.\nJuodaan viinaa,\nOn todellisuus piinaa hetkittäin\nSelvin päin.\n",
+        "Juodaan viinaa,\nTullaan viisaammiksi näin.\nJuodaan viinaa,\nOn todellisuus piinaa selvin päin\nHetkittäin.\n"
+      ]
     },
     {
       "numero": 70,
       "nimi": "Baarikärpänen",
       "kategoria": "Populäärikulttuuri",
-      "sanat": ["",""]
+      "sanat": [
+        "Mua puri baarikärpänen, mut miksi suremaan?\nJo kauan sitten lääkkeen löysin siihen puremaan\nAlla konjamiinipullon onnellisten tähtien,\non hyvä olo ollut mulla siitä lähtien\n",
+        "Jos posket ei näy takaapäin, niin missä vika on?\nNo sosiaalihuoltohan on ollut vastuuton\nKas viina menee ensin poskiin ja sieltä aivoihin,\nja sieltä käsin vaikuttaa se kaikkiin vaivoihin\n",
+        "Siis ryyppäämään, ryyppäämään joka aamu sännätään\nja kun päivä on ohi, niin lisää kännätään\nTahdon olla juovuksissa aina sekä maanantaina,\ntiistaina, keskiviikkona ja torstaina\n",
+        "Poliisinkin tiedetään mua mätkineen\nne oottaa mua pihalla baarikärpäslätkineen\nVoi jospa voisin jäädä tänne baariin nukkumaan,\nkun multa ihmisoikeudet on näemmä päässyt hukkumaan\n",
+        ":,: Siis ryyppäämään, ryyppäämään \njoka aamu sännätään\nja kun päivä on ohi, niin lisää kännätään\nTahdon olla juovuksissa aina sekä maanantaina,\ntiistaina, keskiviikkona ja torstaina :,:\n",
+        "Ne jossain pohtii nytkin viinan hinnan nostoa\nmä istun baaritiskillä janoten kostoa\nVaan eipä taida kannattaa nenillensä hyppiä,\non multa liian helppoa näet siivet nyppiä\n",
+        ":,: Siis ryyppäämään, ryyppäämään \njoka aamu sännätään\nja kun päivä on ohi, niin lisää kännätään\nTahdon olla juovuksissa aina sekä maanantaina,\ntiistaina, keskiviikkona ja torstaina :,:\n"
+      ]
     },
     {
       "numero": 71,
       "nimi": "Kemiaa",
       "kategoria": "Populäärikulttuuri",
-      "sanat": ["",""]
+      "sanat": [
+        "Sen illan puistossa me istuttiin\nyömyöhään juteltiin\npuiston hämärässä suudeltiin (mmm)\nviiniä nautittiin\nsä kerroit kuinka mukavaa\nois kantaa sormusta\npieni mökki metsän laitaan laittaa\nkukkia kasvattaa\n",
+        "Mut hei ei se riitä, et on mukavaa\nsen täytyy olla paljon parempaa\nSiinä täytyy olla rakkautta\nsiinä täytyy olla unelmii\nmannapuuroa ja mansikkaa\njuuri oikeenlaista kemiaa\nsen täytyy joskus satuttaa\nsen täytyy voida naurattaa\nei siitä muuten mitään tuliskaan\nilman oikeenlaista kemiaa\n",
+        "Alkoi katuvalot sammumaan\nja meitä paleltaa\nsä pyysit mua vierees nukkumaan\njoo, mä olin valmiina\naamuyöstä vielä kuuden aikaan\nkuuntelin haaveitas\nseinän takaa isäs kuorsausta\nhmm... mä taisin huokaista\n",
+        "Mut hei, ei se riitä, et on mukavaa\nsen täytyy olla paljon parempaa\nSiinä täytyy olla rakkautta\nsiinä täytyy olla unelmii\nmannapuuroa ja mansikkaa\njuuri oikeenlaista kemiaa\nsen täytyy joskus satuttaa\nsen täytyy voida naurattaa\nei siitä muuten mitään tuliskaan\nilman oikeenlaista kemiaa\n",
+        "Ei elämää liikaa suunnitella saa\nantaa sen mennä vain painollaan\njos joskus vielä tavataan - hyvä niin\njos ei - lakit päähän ja näkemiin\n",
+        "Mut hei ei se riitä...\n"
+      ]
     },
     {
       "numero": 72,
