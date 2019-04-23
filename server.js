@@ -154,7 +154,7 @@ bot.onText(/\/tapahtumat/, async msg => {
   for(var event of events.Tapahtumat) {
     responseTxt += '_'+event.ajankohta.trim()+ '_\r\n';
     responseTxt += event.nimi+' *'+event.kapasiteetti+'*\r\n';
-    responseTxt += '_'+event.sijainti+'_\r\n\r\n';
+    responseTxt += event.sijainti === '' ? '' : '_' +event.sijainti+'_\r\n\r\n';
   };
   bot.sendMessage(chatId, responseTxt, { parse_mode: 'Markdown' });
 });
