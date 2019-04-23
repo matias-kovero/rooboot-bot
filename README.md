@@ -6,14 +6,11 @@ Documentation: [Node-telegram-bot-api]
 
 [Node-telegram-bot-api]: <https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md>
 
-Dependecies
-  - netlify-lambda
-  - node-telegram-bot-api
-  - serverless-http
+
 
 ## New Features!
 
-  - INIT
+  - You are now able to use Semma API.
 
 
 
@@ -22,5 +19,5 @@ Dependecies
 
 List of the command the bot supports.
 
-*/ping - replies with /pong
+* /ping - replies with /pong
 
