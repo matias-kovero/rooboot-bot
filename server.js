@@ -9,7 +9,7 @@ var port = process.env.PORT || 3000;
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
-const lk_obj;
+var lk_obj;
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -118,9 +118,9 @@ bot.onText(/\/ilokivi/, async (msg, match) => {
 bot.onText(/\/laulu(.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   var responseTxt = '';
-  const haku = match[1].trim(); // Tämä voi olla numero tai nimi
-  const laulut = lk_obj.laulukirja;
-  if(typeof haku == 'number') { // Haetaan numerolla
+  const haku = msg.text.split(' ')[1]; // Tämä voi olla numero tai nimi
+  const laulut = lk_obj.Laulukirja;
+  if(haku.match(/^\d+$/)) { // Haetaan numerolla
     for(var laulu of laulut) {
       if(laulu.numero == haku) {
         responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
@@ -131,15 +131,16 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
     }
   } else { // Haetaan nimellä
     for(var laulu of laulut) {
-      if(laulu.nimi == haku) {
+      if(laulu.nimi.toLowerCase().includes(haku.toLowerCase())) {
         responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
         for(var sae of laulu.sanat) {
           responseTxt += sae+'\r\n';
         }
+        break;
       }
     }
   }
-  if(responseTxt == '') responseTxt = 'Ei löydy';
+  if(responseTxt == '') responseTxt = 'Ei löydy!';
   bot.sendMessage(chatId, responseTxt, {parse_mode: 'Markdown'});
 });
 
