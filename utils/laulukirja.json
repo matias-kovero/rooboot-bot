@@ -210,19 +210,33 @@
       "numero": 20,
       "nimi": "Paavi ja sulttaani",
       "kategoria": "Viinilaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "On paavin elo ihanaa,\nhän kaikki anerahat saa.\n:,: On viini kallein, kallein juomansa\n- Oi, jospa paavi oisin ma. :,:\n",
+        "Mutt' ei, ei koskaan maistaa saa,\nhän nuoren naisen suudelmaa.\n:,: Käy illoin yksin, yksin nukkumaan\n- en paavi olla tahtoiskaan! :,:\n",
+        "Mutt' sulttaani hän hummailee\nja haaremissaan elelee.\n:,: Keskellä naisten, naisten viehkeäin\n- sulttaani oisin mielelläin. :,:\n",
+        "Mutt' ei, hän onpi polo mies\nhänt' painaa Koraaninsa ies.\n:,: Ei maista viinin, viinin tippaakaan\n- en sulttaaniksi tahtoiskaan. :,:\n",
+        "En yksin olla tahtoisi\nmä paavi enkä sulttaani.\n:,: Mutt' vuoroin virkaan, virkaan kumpaankin\nmä mielelläni astuisin. :,:\n",
+        "Suo suukko mulle neitonen,\noon sulttaani mä hetkisen.\n:,: Hei, veikot, malja, malja täyttäkää,\nkun paaviks' muuttuu poika tää. :,:\n"
+      ]
     },
     {
       "numero": 21,
       "nimi": "Skumppaa punkun kaa",
       "kategoria": "Viinilaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Krapula on jo ohi kohta\nJoten skippaa se kotisohva\nMyöhemminkin ehtii lepää\nNyt aletaan viinii vetää\nIhan näätää jäädä hyytyyn\nTai painaa päätä tyynyyn\nMennää täysii, kone käyntiin\nSKUMPPAA PUNKUN KAA!\n",
+        "Ei jäädä simaa kupittaa\nJoten hei, juodaan mitä huvittaa\n:,: Missä nähään, mis on tänään\nskumppaa punkun kaa :,:\n",
+        "Hyvää Mummii etsimässä\nJa se kumotaan heti tässä\nHyvät pohjat on ku ässä hihas\nJoten sammun tässä pihas\n",
+        "Mummi sinkoo sinne tänne\nTai viel vaik pidemmälle\nNyt tuopit täyteen\nTyhjäks, täyteen\nSKUMPPAA PUNKUN KAA!\nEi jäädä simaa kupittaa...\n"
+      ]
     },
     {
       "numero": 22,
       "nimi": "Carillo",
       "kategoria": "Viinilaulut",
-      "sanat": ["",""]
+      "sanat": [
+        "Oo, Carillo, Carillo, Carillo,\nsiinä maistuupi mansikkahillo.\nKun mä suutelen pullosi suuta,\nniin katselen taivahan kuuta.\nÄlä luule, että sippaan,\nsinut juon mä viime tippaan.\nÄlä haihdu pois,\nparempaa ei olla vois,\nei vois, ei vois, ei vois.\n"
+      ]
     },
     {
       "numero": 23,
