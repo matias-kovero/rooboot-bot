@@ -153,8 +153,8 @@ bot.onText(/\/tapahtumat/, async msg => {
   //console.log(events);
   for(var event of events.Tapahtumat) {
     responseTxt += '_'+event.ajankohta.trim()+ '_ *'+event.kapasiteetti+'*\r\n';
-    responseTxt += '[' +event.nimi+ '](' +event.linkki +')';
-    responseTxt += event.sijainti === '' ? '\r\n' : '_' +event.sijainti+'_\r\n\r\n';
+    responseTxt += '[' +event.nimi+ '](' +event.linkki +')\r\n\r\n';
+    responseTxt += event.sijainti === '' ? '\r\n\r\n' : '_' +event.sijainti+'_\r\n\r\n';
   };
   bot.sendMessage(chatId, responseTxt, { 
     parse_mode: 'Markdown',
