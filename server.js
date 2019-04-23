@@ -7,7 +7,7 @@ const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 
 // FUNCTIONS FROM UTILS
-const semmaApi = require(__dirname + '/utils/semma');
+const semmaApi = require(__dirname + '/utils/semma')(ravintola);
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -49,7 +49,7 @@ const startBot = async () => {
         if (lause[1].trim() === "h") num = 1; // HUOMENNA
         else if (lause[1].trim() === "yh") num = 2; // YLIHUOMENNA
     };
-    var obj = await semmaApi();
+    var obj = await semmaApi('piato');
     var restaurant_name = obj.RestaurantName;
     var week = obj.MenusForDays;
 
