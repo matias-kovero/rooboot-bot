@@ -10,11 +10,13 @@ const fs = require('fs');
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
-const { getAnimalCount, addDogCount, addCatCount } = require(__dirname + '/utils/animalcount');
 const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 var lk_obj;
-var ani_count;
+var elaimet = {
+  kissat: 0,
+  koirat: 0
+};
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -44,7 +46,6 @@ app.listen(port, function() {
 // ladataan laulukirja kun botti käynnistyy
 const startBot = async () => {
   lk_obj = await getLaulukirja();
-  ani_count = await getAnimalCount();
 };
 
 /**  START ---  SEMMA RESTAURANTS --- */
@@ -219,8 +220,8 @@ bot.onText(/\/tapahtumat/, async msg => {
 bot.onText(/\/kissa/, async msg => {
   const chatId = msg.chat.id;
   try {
-    const json = await addCatCount();
-    bot.sendMessage(chatId, 'Kissat: ' + json.kissat + ' Koirat: ' + json.koirat);
+    elaimet.kissat = elaimet.kissat +1;
+    bot.sendMessage(chatId, 'Kissat: ' + elaimet.kissat + ' Koirat: ' + elaimet.koirat);
     const image = await loadCatImage();
     bot.sendPhoto(chatId, image.url);
   } catch (error) {
@@ -231,8 +232,8 @@ bot.onText(/\/kissa/, async msg => {
 bot.onText(/\/koira/, async msg => {
   const chatId = msg.chat.id;
   try {
-    const json = await addDogCount();
-    bot.sendMessage(chatId, 'Kissat: ' + json.kissat + ' Koirat: ' + json.koirat);
+    elaimet.koirat = elaimet.koirat +1;
+    bot.sendMessage(chatId, 'Kissat: ' + elaimet.kissat + ' Koirat: ' + elaimet.koirat);
     const image = await loadDogImage();
     bot.sendPhoto(chatId, image.url);
   } catch (error) {
