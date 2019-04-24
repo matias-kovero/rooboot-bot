@@ -163,6 +163,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   });
 });
 /** END --- LAULUKIRJA --- */
+/** START --- AUDIO --- */
 bot.onText(/\/vappubanger/, async(msg, match) => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
@@ -174,7 +175,21 @@ bot.onText(/\/vappubanger/, async(msg, match) => {
     title: 'Vappubängeri 2019'
   };
   bot.sendAudio(chatId, stream, options);
-})
+});
+
+bot.onText(/\/bisnestä/, async(msg, match) => {
+  const chatId = msg.chat.id;
+  //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
+  const stream = 'http://users.jyu.fi/~mawakove/musat/Bisnestä.mp3';
+  const options = {
+    caption: '💰💰💰',
+    duration: 283,
+    performer: 'Börs',
+    title: 'Bisnestä'
+  };
+  bot.sendAudio(chatId, stream, options);
+});
+/** END --- AUDIO --- */
 
 /** START --- DUMPPI TAPAHTUMAT */
 bot.onText(/\/tapahtumat/, async msg => {
