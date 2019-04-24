@@ -119,6 +119,7 @@ bot.onText(/\/ilokivi/, async (msg, match) => {
 bot.onText(/\/laulukategoriat/), async (msg, match) => {
   const chatId = msg.chat.id;
   var responseTxt = '';
+  const laulut = lk_obj.Laulukirja;
   for(var laulu of laulut) {
     if(!responseTxt.match(laulu.kategoria)) responseTxt += laulu.kategoria + '\r\n';
   };
