@@ -10,7 +10,7 @@ const fs = require('fs');
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
-const { getAnimalCount, addDogCount, addCatCount } = require(__dirname + 'utils/animalcount');
+const { getAnimalCount, addDogCount, addCatCount } = require(__dirname + '/utils/animalcount');
 const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 var lk_obj;
