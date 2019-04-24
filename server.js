@@ -163,6 +163,11 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   });
 });
 /** END --- LAULUKIRJA --- */
+bot.onText(/\/vappubanger/, async(msg, match) => {
+  const chatId = msg.chat.id;
+  const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
+  bot.sendAudio(chatId, stream);
+})
 
 /** START --- DUMPPI TAPAHTUMAT */
 bot.onText(/\/tapahtumat/, async msg => {
