@@ -163,6 +163,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   });
 });
 /** END --- LAULUKIRJA --- */
+
 /** START --- AUDIO --- */
 bot.onText(/\/vappubanger/, async(msg, match) => {
   const chatId = msg.chat.id;
