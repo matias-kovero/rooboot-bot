@@ -6,8 +6,16 @@ Documentation of the wrapper: [Node-telegram-bot-api]
 
 [Node-telegram-bot-api]: <https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md>
 
-- clone the repo
-- run command npm install && npm start
+### Installation
+
+Rooboot-bot requires [Node.js](https://nodejs.org/) v8+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+$ npm install
+$ npm start
+```
 
 
 ## Supported commands
