@@ -121,7 +121,7 @@ bot.onText(/\/laulukategoriat/), async (msg, match) => {
   var responseTxt = '';
   const laulut = lk_obj.Laulukirja;
   for(var laulu of laulut) {
-    if(!responseTxt.match(laulu.kategoria)) responseTxt += laulu.kategoria + '\r\n';
+    if(!responseTxt.includes(laulu.kategoria)) responseTxt += laulu.kategoria + '\r\n';
   };
 
   if(responseTxt == '') responseTxt = 'Ei löydy!';
@@ -141,7 +141,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
       if(laulu.numero == haku) {
         responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
         for(var sae of laulu.sanat) {
-          responseTxt += sae+'\r\n';
+          responseTxt += sae.replace('*', '\\*')+'\r\n'; // We need to escape * or markdown will brake
         }
       }
     }
