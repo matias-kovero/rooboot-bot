@@ -5,7 +5,7 @@
 const querystring = require('querystring');
 const r2 = require('r2');
 
-const ANIMALS_API_KEY = '94030cba-ffa6-4aca-8ccd-44d2dfc957fe';
+const ANIMALS_API_KEY = process.env.ANIMALS_TOKEN;
 
 const loadCatImage = async () => {
   const headers = {
