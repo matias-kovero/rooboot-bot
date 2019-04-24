@@ -166,10 +166,10 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
 bot.onText(/\/vappubanger/, async(msg, match) => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
-  const stream = 'http://users.jyu.fi/~mawakove/musat/När Börjar x Mibetti - Vappubängeri 2019.mp3';
+  const stream = 'http://users.jyu.fi/~mawakove/musat/När Börjar x Mibetti-Vappubängeri 2019.mp3';
   const options = {
-    caption: '🔥Vappubängeri 2019🔥',
-    duration: '3:48',
+    caption: '🔥🔥🔥',
+    duration: 228,
     performer: 'När Börjar x Mibetti',
     title: 'Vappubängeri 2019'
   };
