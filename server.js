@@ -177,7 +177,7 @@ bot.onText(/\/vappubanger/, async(msg, match) => {
   bot.sendAudio(chatId, stream, options);
 });
 
-bot.onText(/\/bisnestä/, async(msg, match) => {
+bot.onText(/\/bisnesta/, async(msg, match) => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
   const stream = 'http://users.jyu.fi/~mawakove/musat/Bisnestä.mp3';
