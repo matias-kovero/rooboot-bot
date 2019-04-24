@@ -122,7 +122,7 @@ bot.onText(/\/ilokivi/, async (msg, match) => {
 /** END --- SEMMA RESTAURANTS --- */
 
 /** START --- LAULUKIRJA --- */
-bot.onText(/\/laulukategoriat/), async (msg, match) => {
+bot.onText(/\/laulukategoriat/, async (msg, match) => {
   const chatId = msg.chat.id;
   var responseTxt = '';
   const laulut = lk_obj.Laulukirja;
@@ -135,7 +135,7 @@ bot.onText(/\/laulukategoriat/), async (msg, match) => {
     parse_mode: 'Markdown',
     disable_web_page_preview: true
   });
-}
+});
 
 bot.onText(/\/laulu(.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
