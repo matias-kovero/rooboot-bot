@@ -5,11 +5,13 @@ const TelegramBot = require('node-telegram-bot-api');
 const TOKEN = process.env.TELEGRAM_TOKEN;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
+const fs = require('fs');
 
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
 const getFullEvents = require(__dirname + '/utils/events');
+const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 var lk_obj;
 
 // No need to pass any parameters as we will handle the updates with Express
@@ -209,6 +211,28 @@ bot.onText(/\/tapahtumat/, async msg => {
   });
 });
 /** END --- DUMPPI TAPAHTUMAT  */
+
+/** START --- ANIMAL IMAGES --- */
+bot.onText(/\/kissa/, async msg => {
+  const chatId = msg.chat.id;
+  try {
+    const image = await loadCatImage();
+    bot.sendPhoto(chatId, image.url);
+  } catch (error) {
+    bot.sendMessage(chatId, 'Joku meni ny rikki :(');
+  }
+});
+
+bot.onText(/\/koira/, async msg => {
+  const chatId = msg.chat.id;
+  try {
+    const image = await loadDogImage();
+    bot.sendPhoto(chatId, image.url);
+  } catch (error) {
+    bot.sendMessage(chatId, 'Joku meni ny rikki :(');
+  }
+});
+/** END --- ANIMAL IMAGES --- */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {

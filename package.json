@@ -24,7 +24,9 @@
     "express": "^4.15.x",
     "fs": "0.0.1-security",
     "mongodb": "^3.0.10",
-    "node-telegram-bot-api": "^0.30.0"
+    "node-telegram-bot-api": "^0.30.0",
+    "querystring": "^0.2.0",
+    "r2": "^2.0.1"
   },
   "author": "Matias Kovero",
   "license": "ISC",
