@@ -201,18 +201,22 @@ bot.onText(/\/bisnesta/, async(msg, match) => {
 /** START --- DUMPPI TAPAHTUMAT */
 bot.onText(/\/tapahtumat/, async msg => {
   const chatId = msg.chat.id;
-  responseTxt = "";
-  const events = await getFullEvents();
-  //console.log(events);
-  for(var event of events.Tapahtumat) {
-    responseTxt += '_'+event.ajankohta.trim()+ '_ *'+event.kapasiteetti+'*\r\n';
-    responseTxt += '[' +event.nimi+ '](' +event.linkki +')\r\n';
-    responseTxt += event.sijainti === ' ' ? '\r\n' : '_' +event.sijainti+'_\r\n\r\n';
-  };
-  bot.sendMessage(chatId, responseTxt, { 
-    parse_mode: 'Markdown',
-    disable_web_page_preview: true
-  });
+  try {
+    responseTxt = "";
+    const events = await getFullEvents();
+    //console.log(events);
+    for(var event of events.Tapahtumat) {
+      responseTxt += '_'+event.ajankohta.trim()+ '_ *'+event.kapasiteetti+'*\r\n';
+      responseTxt += '[' +event.nimi+ '](' +event.linkki +')\r\n';
+      responseTxt += event.sijainti === ' ' ? '\r\n' : '_' +event.sijainti+'_\r\n\r\n';
+    };
+    bot.sendMessage(chatId, responseTxt, { 
+      parse_mode: 'Markdown',
+      disable_web_page_preview: true
+    });
+  } catch(error) {
+    bot.sendMessage(chatId, 'Ei toimi :(');
+  }
 });
 /** END --- DUMPPI TAPAHTUMAT  */
 
