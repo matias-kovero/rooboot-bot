@@ -26,6 +26,7 @@ Install the dependencies and start the server.
 | /tapahtumat |  | /tapahtumat | Gives all the events from [dumppi.fi/tapahtumat](https://dumppi.fi/tapahtumat) |
 | /laulu | song name or song number |/laulu 2 | Gives the song lyrics |
 | /laulukategoriat |  | /laulukategoriat | Returns all categories of songs |
+| /vappubanger | | /vappubanger | Plays [Vappubängeri 2019](https://soundcloud.com/narborjar/vappubangeri-2019/s-6puLq) |
 #
 
 #### Restaurants
