@@ -10,13 +10,19 @@ const fs = require('fs');
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
+const getBanters = require(__dirname + '/utils/banters');
 const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 var lk_obj;
+var banters;
 var elaimet = {
   kissat: 0,
   koirat: 0
 };
+// List of chats where banter is on
+var banter_ON = [];
+// List with additional info about banter: rate
+var banter_INFO = [];
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -46,6 +52,7 @@ app.listen(port, function() {
 // ladataan laulukirja kun botti käynnistyy
 const startBot = async () => {
   lk_obj = await getLaulukirja();
+  banters = await getBanters();
 };
 
 /**  START ---  SEMMA RESTAURANTS --- */
@@ -171,7 +178,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
 /** END --- LAULUKIRJA --- */
 
 /** START --- AUDIO --- */
-bot.onText(/\/vappubanger/, async(msg, match) => {
+bot.onText(/\/vappubanger/, async msg => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
   const stream = 'http://users.jyu.fi/~mawakove/musat/När Börjar x Mibetti-Vappubängeri 2019.mp3';
@@ -184,7 +191,7 @@ bot.onText(/\/vappubanger/, async(msg, match) => {
   bot.sendAudio(chatId, stream, options);
 });
 
-bot.onText(/\/bisnesta/, async(msg, match) => {
+bot.onText(/\/bisnesta/, async msg => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
   const stream = 'http://users.jyu.fi/~mawakove/musat/Bisnestä.mp3';
@@ -245,6 +252,49 @@ bot.onText(/\/koira/, async msg => {
   }
 });
 /** END --- ANIMAL IMAGES --- */
+
+/** START --- BANTER --- */
+bot.onText(/\/banter/, async msg => {
+  const chatId = msg.chat.id;
+  var response = '';
+  var index = banter_ON.indexOf(chatId);      // Save it to an var, as we will use it twice.
+  if(index !== -1) {                          // The chat has banter turned ON.
+    banter_ON.splice(index, 1);               // Remove chatID from banter_ON array => banter is now turned OFF.
+    response = 'Banter is turned off.';
+  } else {                                    // The has banter turned OFF.
+    banter_ON.push(chatId);                   // Add the chatID to the banter_ON array => banter is now turned ON.
+    banter_INFO.push({id: chatId, rate: 5});  // We will also give the chat an rate of 50%.
+    response = 'Banter is turned on. Rate 50%';
+  }
+  bot.sendMessage(chatId, response, {disable_notification: true}); // Testing, notification should be with no sound.
+});
+bot.onText(/\/rate/, async msg => {
+  const chatId = msg.chat.id;
+  var response = '';
+  var param = msg.text.split(' ');
+  var num;
+  var index = banter_INFO.findIndex(x => x.id == chatId);
+  if(index !== -1) {
+    if(param[1] !== undefined) {        // We have an param
+      num = parseInt(param[1].trim());  // Try to parse param to an INT
+      if(num !== NaN) {                 // Check if it is an INT
+        if(num > 0 && num < 11) {       // Check if value is right
+          banter_INFO[index].rate = num;
+          response = 'Banter rate changed';
+        } else response = 'Tarkista numero.\r\nNumeron pitää olla väliltä 1 - 10'
+      } else response = 'Tarkista numero.\r\nKokeile muodossa /rate {numero}\r\nEsim. /rate 2';
+    } else response = 'Tarkista komento.\r\nPitäisi olla muodossa /rate {numrero}\r\nEsim. /rate 2';
+  } else response = 'Laitappa banter ensiksi päälle...';
+  bot.sendMessage(chatId, response);
+}); 
+bot.on('message', msg => {
+  const chatId = msg.chat.id;
+  if(banter_ON.indexOf(chatId) !== -1) {
+    // RNG and check if we will response
+    // IF YES, get banter -> get name -> send banter.
+  }
+});
+/** END --- BANTER --- */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
