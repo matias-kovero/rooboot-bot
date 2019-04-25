@@ -260,6 +260,7 @@ bot.onText(/\/banter/, async msg => {
   var index = banter_ON.indexOf(chatId);      // Save it to an var, as we will use it twice.
   if(index !== -1) {                          // The chat has banter turned ON.
     banter_ON.splice(index, 1);               // Remove chatID from banter_ON array => banter is now turned OFF.
+    banter_INFO.splice(banter_INFO.findIndex(x => x.id == chatId), 1);
     response = 'Banter is turned off.';
   } else {                                    // The has banter turned OFF.
     banter_ON.push(chatId);                   // Add the chatID to the banter_ON array => banter is now turned ON.
