@@ -281,7 +281,7 @@ bot.onText(/\/rate/, async msg => {
       if(num !== NaN) {                 // Check if it is an INT
         if(num > 0 && num < 11) {       // Check if value is right
           banter_INFO[index].rate = num;
-          response = 'Banter rate changed';
+          response = 'Banter rate changed to '+ (num *10) + '%';
         } else response = 'Tarkista numero.\r\nNumeron pitää olla väliltä 1 - 10'
       } else response = 'Tarkista numero.\r\nKokeile muodossa /rate {numero}\r\nEsim. /rate 2';
     } else response = 'Tarkista komento.\r\nPitäisi olla muodossa /rate {numrero}\r\nEsim. /rate 2';
@@ -297,6 +297,26 @@ bot.on('message', msg => {
 });
 /** END --- BANTER --- */
 
+/** START --- xxx vai xxx --- */
+bot.on('message', msg => {
+  const chatId = msg.chat.id;
+  const message = msg.text;
+  if(message.includes('vai')) { // Tarkistetaan löytyykö sana vai
+    var taulukko = message.split(' '); 
+    if (taulukko.length == 3) { // Toimii atm vain 3 sanan kanssa xxx vai xxx
+      if (taulukko[1] === 'vai') { // onko vai keskellä
+        var sana1 = taulukko[0];
+        var sana2 = taulukko[2];
+        let tulos = Math.random();
+        if (tulos > 0.5) {
+          bot.sendMessage(chatId, sana1);
+        } else bot.sendMessage(chatId, sana2);
+      }
+    }
+  }
+});
+/** END --- xxx vai xxx --- */
+
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
   var num = 0;
@@ -307,7 +327,9 @@ function parseSemma(msg, obj) {
   };
   var restaurant_name = obj.RestaurantName;
   var week = obj.MenusForDays;
-
+  if(week[0] == undefined) {
+    return 'Harmi, onko sulla nälkä?\r\n';
+  }
   var day = week[0];
   var open_time = day.LunchTime;
   var food = day.SetMenus;
