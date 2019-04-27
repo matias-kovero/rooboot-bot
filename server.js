@@ -291,6 +291,13 @@ bot.onText(/\/rate/, async msg => {
 bot.on('message', msg => {
   const chatId = msg.chat.id;
   if(banter_ON.indexOf(chatId) !== -1) {
+    var index = banter_INFO.findIndex(x => x.id == chatId);
+    var rate = banter_INFO[index].rate;
+    var rnd = Math.random();
+    if(rnd < (rate/10)) { // rnd = 0-1, (rate/10) = 0.1 - 1
+      var banter = banters[Math.floor(Math.random() * banters.length)].replace('&nimi&', msg.contact.first_name);
+      bot.sendMessage(chatId, banter);
+    } 
     // RNG and check if we will response
     // IF YES, get banter -> get name -> send banter.
   }
