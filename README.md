@@ -28,6 +28,8 @@ Install the dependencies and start the server.
 | /laulukategoriat |  | /laulukategoriat | Returns all categories of songs |
 | /vappubanger | | /vappubanger | Plays [Vappubängeri 2019](https://soundcloud.com/narborjar/vappubangeri-2019/s-6puLq) |
 | /bisnesta | |/bisnesta | Plays Bisnestä |
+| /kissa | | /kissa | Sends a cat image |
+| /koira | | /koira | Sends a dog image |
 #
 
 #### Restaurants
@@ -39,10 +41,17 @@ The bot supports these restaurants:
 As for now the bot supports:
 > Lookup with song number (0 - 92).  
 > Lookup with partial or full song name.  
+#
+
+#### APIs
+Fiilu - https://github.com/matias-kovero/fiilu-scraper  
+	
+Ilokivi - https://github.com/rennehir/ilokivi-scraper
+
+Tapahtumat - https://github.com/lurttu/dumppi-tapahtumat-scraper
+#
 
 ## TODO:
 - Create inline buttons for song categories
 	> (Show all categories -> select categorie -> show all songs on that categorie -> Select song)
-- Add commands for dog & cat pictures (/koira & /kissa)
-	> These commands would send an random image of the selected animal
-- Banters?
+- Banters? & support adding new ones
