@@ -16,6 +16,7 @@ Install the dependencies and start the server.
  npm install
  npm start
 ```
+Add your telegram token as an environment parameter, with key TELEGRAM_TOKEN
 
 --------------------
 ### Supported commands
