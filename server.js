@@ -297,6 +297,7 @@ bot.on('message', async msg => {
     var rate = banter_INFO[index].rate;
     var rnd = Math.random();
     if(rnd < (rate/10)) { // rnd = 0-1, (rate/10) = 0.1 - 1
+      f_name = f_name + rate.toString();
       var banter = banters[Math.floor(Math.random() * banters.length)].replace('&nimi&', f_name);
       bot.sendMessage(chatId, banter);
     } 
@@ -341,7 +342,7 @@ function parseSemma(msg, obj) {
   if(week[0] == undefined) {
     return 'Harmi, onko sulla nälkä?\r\n';
   }
-  var day = week[0];
+  var day = week[num];
   var open_time = day.LunchTime;
   var food = day.SetMenus;
 
