@@ -357,8 +357,7 @@ function parseSemma(msg, obj) {
     for (i = 0; i < food.length; i++) {
       if(food[i].Name === null) {} else {
         responseTxt += '*' + food[i].Name + '* ';
-        if(restaurant_name.includes('Fiilu')) responseTxt += '_2,60€_\r\n';
-        else responseTxt += '_' + food[i].Price + '_\r\n';
+        responseTxt += '_' + food[i].Price + '_\r\n';
       }
       for (y = 0; y < food[i].Components.length; y++) {
         responseTxt += food[i].Components[y].replace('*', '\\*') + '\r\n';
