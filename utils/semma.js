@@ -14,6 +14,7 @@ const rentukka_url = 'https://www.semma.fi/modules/json/json/Index?costNumber=14
 const ylisto_url = 'https://www.semma.fi/modules/json/json/Index?costNumber=1403&language=fi';
 const fiilu_url = 'https://fiilu-scraper.now.sh/lunch/week';
 const ilokivi_url = 'https://ilokivi-scraper.now.sh/lunch/today?semmaFormat=true';
+const fiilu_url_summer = 'https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=3364&language=fi';
 
 const getPiato = async () => {
   let menu;
@@ -145,7 +146,7 @@ const getYlisto = async () => {
 }
 const getFiilu = async () => {
   let menu;
-  let url = fiilu_url;
+  let url = fiilu_url_summer; // Summer schedule 1.6 - 31.8
   try {
     const response = await axios.get(url);
     if (response.status === 200) {

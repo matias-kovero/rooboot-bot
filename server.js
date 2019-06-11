@@ -351,6 +351,8 @@ function parseSemma(msg, obj) {
   else if (num == 2) dayTxt = "_Ylihuomenna_";
   var responseTxt = '*' + restaurant_name + '* ' + dayTxt + '\r\n';
   if (open_time !== null) {
+    // Hot-Fix for Fiilu (Summer)
+    if(restaurant_name.includes('Fiilu')) open_time = '12.00-13.30';
     responseTxt += 'Lounas: ' + open_time + '\r\n';
     for (i = 0; i < food.length; i++) {
       responseTxt += '*' + food[i].Name + '* ';
