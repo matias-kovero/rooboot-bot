@@ -355,8 +355,11 @@ function parseSemma(msg, obj) {
     if(restaurant_name.includes('Fiilu')) open_time = '12.00-13.30';
     responseTxt += 'Lounas: ' + open_time + '\r\n';
     for (i = 0; i < food.length; i++) {
-      responseTxt += '*' + food[i].Name + '* ';
-      responseTxt += '_' + food[i].Price + '_\r\n';
+      if(food[i].Name === null) {} else {
+        responseTxt += '*' + food[i].Name + '* ';
+        if(restaurant_name.includes('Fiilu')) responseTxt += '_2,60€_\r\n';
+        else responseTxt += '_' + food[i].Price + '_\r\n';
+      }
       for (y = 0; y < food[i].Components.length; y++) {
         responseTxt += food[i].Components[y].replace('*', '\\*') + '\r\n';
       }
