@@ -289,18 +289,19 @@ bot.onText(/\/rate/, async msg => {
   bot.sendMessage(chatId, response);
 }); 
 
-bot.on('message', async msg => {
+bot.on('message', msg => {
   const chatId = msg.chat.id;
-  const f_name = msg.contact.first_name;
+  let f_name = 'Juoppo';
+  if(msg.chat.first_name != undefined) f_name = msg.chat.first_name;
+  if(msg.contact != undefined) f_name = msg.contact.first_name;
   if(banter_ON.indexOf(chatId) !== -1) {
     var index = banter_INFO.findIndex(x => x.id == chatId);
     var rate = banter_INFO[index].rate;
     var rnd = Math.random();
     if(rnd < (rate/10)) { // rnd = 0-1, (rate/10) = 0.1 - 1
-      f_name = f_name + rate.toString();
       var banter = banters[Math.floor(Math.random() * banters.length)].replace('&nimi&', f_name);
       bot.sendMessage(chatId, banter);
-    } 
+    }
     // RNG and check if we will response
     // IF YES, get banter -> get name -> send banter.
   }
@@ -312,18 +313,10 @@ bot.on('message', msg => {
   const chatId = msg.chat.id;
   const message = msg.text;
   if(message !== undefined) {
-    if(message.includes('vai')) { // Tarkistetaan löytyykö sana vai
-      var taulukko = message.split(' '); 
-      if (taulukko.length == 3) { // Toimii atm vain 3 sanan kanssa xxx vai xxx
-        if (taulukko[1] === 'vai') { // onko vai keskellä
-          var sana1 = taulukko[0];
-          var sana2 = taulukko[2];
-          let tulos = Math.random();
-          if (tulos > 0.5) {
-            bot.sendMessage(chatId, sana1);
-          } else bot.sendMessage(chatId, sana2);
-        }
-      }
+    if(message.includes(' vai ')) { // Tarkistetaan löytyykö sana vai
+      var sanat = message.split(' vai '); 
+      let tulos = Math.floor(Math.random() * Math.floor(sanat.length));
+      bot.sendMessage(chatId, sanat[tulos]);
     }
   } 
 });
