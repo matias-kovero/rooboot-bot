@@ -3,6 +3,9 @@ var app = express();
 var bodyParser = require('body-parser')
 const TelegramBot = require('node-telegram-bot-api');
 const TOKEN = process.env.TELEGRAM_TOKEN;
+const custom = new RegExp(process.env.CUSTOM);
+const secret = process.env.VALDEMAR;
+const cLength = process.env.CUSTOM.length;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
@@ -288,7 +291,13 @@ bot.onText(/\/rate/, async msg => {
   } else response = 'Laitappa banter ensiksi päälle...';
   bot.sendMessage(chatId, response);
 }); 
-
+bot.onText(custom, msg => {
+  let message = msg.text;
+  if(message.length > cLength) {
+    let response = message.substring(cLength);
+    bot.sendMessage(secret, response);
+  }
+});
 bot.on('message', msg => {
   const chatId = msg.chat.id;
   let f_name = 'Juoppo';
@@ -310,14 +319,15 @@ bot.on('message', msg => {
 
 /** START --- xxx vai xxx --- */
 bot.on('message', msg => {
+  const msgID = msg.message_id;
   const chatId = msg.chat.id;
   const message = msg.text;
   if(message !== undefined) {
     if(message.includes(' vai ')) { // Tarkistetaan löytyykö sana vai
       var sanat = message.split(' vai '); 
       let tulos = Math.floor(Math.random() * Math.floor(sanat.length));
-      bot.sendMessage(chatId, sanat[tulos]);
-    }
+      bot.sendMessage(chatId, sanat[tulos], {reply_to_message_id: msgID});
+    } // Added reply, to prevent users exploiting by deleting original message.
   } 
 });
 /** END --- xxx vai xxx --- */
