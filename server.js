@@ -322,6 +322,22 @@ bot.on('message', msg => {
 });
 /** END --- xxx vai xxx --- */
 
+/** START --- pitäskö/voisko/oisko --- */
+bot.on('message', msg => {
+  const chatId = msg.chat.id;
+  const message = msg.text;
+  const regex = /sk(o|ö)$/g;
+
+  if (message) {
+    const firstWord = message.split(' ')[0].toLowerCase();
+    if (firstWord.match(regex)) {
+      const answer = firstWord.replace(regex, 's');
+      bot.sendMessage(chatId, answer);
+    }
+  }
+})
+/** END --- pitäskö/voisko/oisko --- */
+
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
   var num = 0;
