@@ -17,12 +17,18 @@ const getLaulukirja = require(__dirname + '/utils/laulukirja');
 const getBanters = require(__dirname + '/utils/banters');
 const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
+const getCommitMsg = require(__dirname + '/utils/commitMsg');
+
 var lk_obj;
 var banters;
 var elaimet = {
   kissat: 0,
   koirat: 0
 };
+// Current commit message
+let commit_message;
+// List of chat IDs where rooboot has been used.
+let informed_chats = [];
 // List of chats where banter is on
 var banter_ON = [];
 // List with additional info about banter: rate
@@ -57,6 +63,7 @@ app.listen(port, function() {
 const startBot = async () => {
   lk_obj = await getLaulukirja();
   banters = await getBanters();
+  commit_message = await getCommitMsg('matias-kovero/rooboot-bot');
 };
 
 /**  START ---  SEMMA RESTAURANTS --- */
@@ -120,7 +127,6 @@ bot.onText(/\/laulukategoriat/, async (msg, match) => {
     disable_web_page_preview: true
   });
 });
-
 bot.onText(/\/laulu(.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
   var responseTxt = '';
@@ -167,7 +173,6 @@ bot.onText(/\/vappubanger/, async msg => {
   };
   bot.sendAudio(chatId, stream, options);
 });
-
 bot.onText(/\/bisnesta/, async msg => {
   const chatId = msg.chat.id;
   //const stream = fs.createReadStream(__dirname + '/media/vappubanger.mp3');
@@ -216,7 +221,6 @@ bot.onText(/\/kissa/, async msg => {
     bot.sendMessage(chatId, 'Joku meni ny rikki :(');
   }
 });
-
 bot.onText(/\/koira/, async msg => {
   const chatId = msg.chat.id;
   try {
@@ -322,6 +326,18 @@ bot.on('message', msg => {
   }
 })
 /** END --- pitäskö/voisko/oisko --- */
+
+/** START --- Info new commit ---  */
+bot.on('message', msg => {
+  const chatId = msg.chat.id;
+  if(informed_chats.indexOf(chatId) === -1 && commit_message) { // Chat isn't informed of new commit.
+    informed_chats.push(chatId); // Add this chat as informed
+    let message = "*I've been updated*\r\n";
+    message += "Info: \r\n" + commit_message;
+    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+  };
+})
+/** END --- Info new commit ---  */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
