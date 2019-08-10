@@ -311,8 +311,9 @@ bot.on('message', msg => {
   const chatId = msg.chat.id;
   const message = msg.text;
   const regex = /sk(o|ö)$/g;
+  const rng = Math.floor((Math.random() * 100) + 1);
 
-  if (message) {
+  if (message && rng > 70) { // 30% chance to response
     const firstWord = message.split(' ')[0].toLowerCase();
     if (firstWord.match(regex)) {
       const answer = firstWord.replace(regex, 's');
