@@ -9,7 +9,7 @@ const cLength = process.env.CUSTOM.length;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
-const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka)/);
+const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka)($|@+)/);
 
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
@@ -69,7 +69,7 @@ const startBot = async () => {
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(supportedRestaurant, async msg => {
   const chatId = msg.chat.id;
-  const restaurant = msg.text.split(' ')[0].substring(1); // Take the restaurant name
+  const restaurant = msg.text.split(/ |@/)[0].substring(1); // Take the restaurant name
   let obj;
   switch(restaurant) {
     case 'piato':
@@ -330,14 +330,25 @@ bot.on('message', msg => {
 /** START --- Info new commit ---  */
 bot.on('message', msg => {
   const chatId = msg.chat.id;
-  if(informed_chats.indexOf(chatId) === -1 && commit_message) { // Chat isn't informed of new commit.
+  //commit_message = null;
+  if(informed_chats.indexOf(chatId) === -1 && commit_message && commit_message.length != 0) { // Chat isn't informed of new commit.
     informed_chats.push(chatId); // Add this chat as informed
     let message = "*I've been updated*\r\n";
-    message += "Info: \r\n" + commit_message;
+    message += commit_message;
     bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
   };
 })
 /** END --- Info new commit ---  */
+
+/** START --- Countdown Game ---  */
+bot.onText(/\/start/, function onPhotoText(msg){
+  bot.sendGame(msg.chat.id, 'countdown');
+});
+
+bot.on('callback_query', function onCallbackQuery(callbackQuery) {
+  bot.answerCallbackQuery(callbackQuery.id, { url: 'https://countdown-html-game.now.sh/' });
+});
+/** END --- Countdown Game ---  */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
