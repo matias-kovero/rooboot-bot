@@ -12,7 +12,8 @@ const getCommitMsg = async (repoURL) => {
     const $ = cheerio.load(html);
 
     var commit_message = $('.message.text-inherit', html).text();
-    return commit_message; // Format ready for Markdown (Italic)
+    if(comming_message.length > 1) return commit_message;
+    else return null;
   } catch(error) {
     return 'Unable to get commit message. ' + error.message;
   }
