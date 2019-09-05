@@ -12,7 +12,7 @@ const getCommitMsg = async (repoURL) => {
     const $ = cheerio.load(html);
 
     var commit_message = $('.message.text-inherit', html).text();
-    return '_'+commit_message+'_'; // Format ready for Markdown (Italic)
+    return commit_message; // Format ready for Markdown (Italic)
   } catch(error) {
     return 'Unable to get commit message. ' + error.message;
   }

@@ -146,7 +146,8 @@ const getYlisto = async () => {
 }
 const getFiilu = async () => {
   let menu;
-  let url = fiilu_url_summer; // Summer schedule 1.6 - 31.8
+  let url = fiilu_url; 
+  //let url = fiilu_url_summer; - Summer schedule 1.6 - 31.8
   try {
     const response = await axios.get(url);
     if (response.status === 200) {

@@ -9,7 +9,7 @@ const cLength = process.env.CUSTOM.length;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
-const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka)($|@+)/);
+const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka)(.(h|yh)$|@+)/);
 
 // FUNCTIONS FROM UTILS
 const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
@@ -334,7 +334,7 @@ bot.on('message', msg => {
   if(informed_chats.indexOf(chatId) === -1 && commit_message && commit_message.length != 0) { // Chat isn't informed of new commit.
     informed_chats.push(chatId); // Add this chat as informed
     let message = "*I've been updated*\r\n";
-    message += commit_message;
+    message += '_'+commit_message+'_';
     bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
   };
 })
@@ -373,7 +373,7 @@ function parseSemma(msg, obj) {
   var responseTxt = '*' + restaurant_name + '* ' + dayTxt + '\r\n';
   if (open_time !== null) {
     // Hot-Fix for Fiilu (Summer)
-    if(restaurant_name.includes('Fiilu')) open_time = '12.00-13.30';
+    //if(restaurant_name.includes('Fiilu')) open_time = '12.00-13.30';
     responseTxt += 'Lounas: ' + open_time + '\r\n';
     for (i = 0; i < food.length; i++) {
       if(food[i].Name === null) {} else {
