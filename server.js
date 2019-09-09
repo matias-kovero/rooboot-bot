@@ -9,10 +9,10 @@ const cLength = process.env.CUSTOM.length;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
-const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka)(.(h$|yh$)|$|@+)/);
+const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka|aimo)(.(h$|yh$)|$|@+)/);
 
 // FUNCTIONS FROM UTILS
-const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi} = require(__dirname + '/utils/semma');
+const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi, getAimo} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
 const getBanters = require(__dirname + '/utils/banters');
 const getFullEvents = require(__dirname + '/utils/events');
@@ -102,6 +102,8 @@ bot.onText(supportedRestaurant, async msg => {
     case 'ilokivi':
       obj = await getIlokivi();
       break;
+    case 'aimo':
+      obj = await getAimo();
     default:
       break;
   }
@@ -330,7 +332,6 @@ bot.on('message', msg => {
 /** START --- Info new commit ---  */
 bot.on('message', msg => {
   const chatId = msg.chat.id;
-  //commit_message = null;
   if(informed_chats.indexOf(chatId) === -1 && commit_message) { // Chat isn't informed of new commit.
     informed_chats.push(chatId); // Add this chat as informed
     let message = "*I've been updated*\r\n";

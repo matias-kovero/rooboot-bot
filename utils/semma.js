@@ -14,6 +14,7 @@ const rentukka_url = 'https://www.semma.fi/modules/json/json/Index?costNumber=14
 const ylisto_url = 'https://www.semma.fi/modules/json/json/Index?costNumber=1403&language=fi';
 const fiilu_url = 'https://fiilu-scraper.now.sh/lunch/week';
 const ilokivi_url = 'https://ilokivi-scraper.now.sh/lunch/today?semmaFormat=true';
+const aimo_url = 'https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0350&language=fi';
 const fiilu_url_summer = 'https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=3364&language=fi';
 
 const getPiato = async () => {
@@ -177,6 +178,22 @@ const getIlokivi = async () => {
   }
   return menu;
 }
+const getAimo = async () => {
+  let menu;
+  let url = aimo_url;
+  try {
+    const response = await axios.get(url);
+    if (response.status === 200) {
+      const html = response.data;
+      menu = html;
+    } else {
+      throw new Error(`Error, response status ${response.status}`);
+    }
+  } catch (error) {
+    return [];
+  }
+  return menu;
+}
 
 module.exports = {
   getPiato,
@@ -188,5 +205,6 @@ module.exports = {
   getRentukka,
   getYlisto,
   getFiilu,
-  getIlokivi
+  getIlokivi,
+  getAimo
 }
