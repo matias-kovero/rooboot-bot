@@ -10,9 +10,11 @@ const getCommitMsg = async (repoURL) => {
     const response = await axios.get(requestURL);
     const html = response.data;
     const $ = cheerio.load(html);
-
+    console.log('Text:', $('.message.text-inherit', html));
     var commit_message = $('.message.text-inherit', html).text();
-    return commit_message;
+    console.log('Utils:', commit_message);
+    var text = commit_message;
+    return text;
   } catch(error) {
     return 'Unable to get commit message. ' + error.message;
   }

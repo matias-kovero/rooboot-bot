@@ -33,6 +33,8 @@ let informed_chats = [];
 var banter_ON = [];
 // List with additional info about banter: rate
 var banter_INFO = [];
+// Sticker Set (Pukki)
+let stickers_pukki;
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -61,11 +63,11 @@ app.listen(port, function() {
 
 // ladataan laulukirja kun botti käynnistyy
 const startBot = async () => {
+  stickers_pukki = await bot.getStickerSet("Pukkipack");
   lk_obj = await getLaulukirja();
   banters = await getBanters();
   commit_message = await getCommitMsg('matias-kovero/rooboot-bot');
 };
-
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(supportedRestaurant, async msg => {
   const chatId = msg.chat.id;
@@ -332,6 +334,7 @@ bot.on('message', msg => {
 /** START --- Info new commit ---  */
 bot.on('message', msg => {
   const chatId = msg.chat.id;
+  if(informed_chats.indexOf(chatId) === -1) console.log('Server:', commit_message);
   if(informed_chats.indexOf(chatId) === -1 && commit_message) { // Chat isn't informed of new commit.
     informed_chats.push(chatId); // Add this chat as informed
     let message = "*I've been updated*\r\n";
@@ -340,6 +343,20 @@ bot.on('message', msg => {
   };
 })
 /** END --- Info new commit ---  */
+
+/** START --- Pukkiparty Stickers ---  */
+bot.onText(/\/pukkiparty/, msg => {
+  const chatId = msg.chat.id;
+  let valid_pack;
+  if(stickers_pukki.stickers && stickers_pukki.stickers.length > 0) valid_pack = true;
+
+  if(valid_pack) {
+    const rng = Math.floor((Math.random() * stickers_pukki.stickers.length) + 1);
+    let sticker = stickers_pukki.stickers[rng].file_id;
+    bot.sendSticker(chatId, sticker);
+  } else bot.sendMessage(chatId, 'Sorry, unable to get Pukkipack stickers');
+});
+/** END --- Pukkiparty Stickers ---  */
 
 /** START --- Countdown Game ---  */
 bot.onText(/\/start/, function onPhotoText(msg){
