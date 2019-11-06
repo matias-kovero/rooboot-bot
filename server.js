@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require('body-parser')
 const TelegramBot = require('node-telegram-bot-api');
+const center = require('center-align');
 const TOKEN = process.env.TELEGRAM_TOKEN;
 const custom = new RegExp(process.env.CUSTOM);
 const secret = process.env.VALDEMAR;
@@ -9,15 +10,17 @@ const cLength = process.env.CUSTOM.length;
 const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
-const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka|aimo)(.(h$|yh$)|$|@+)/);
+const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka|aimo|uno)(.(h$|yh$)|$|@+)/);
+const Papu = require('./utils/papu.js');
+const createCollage = require('@settlin/collage');
 
 // FUNCTIONS FROM UTILS
-const { getPiato, getLozzi, getMaija, getLibri, getTilia, getSyke, getRentukka, getYlisto, getFiilu, getIlokivi, getAimo} = require(__dirname + '/utils/semma');
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
 const getBanters = require(__dirname + '/utils/banters');
 const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 const getCommitMsg = require(__dirname + '/utils/commitMsg');
+const getMenu = require('./utils/semma.js');
 
 var lk_obj;
 var banters;
@@ -25,6 +28,7 @@ var elaimet = {
   kissat: 0,
   koirat: 0
 };
+var hytit = [];
 // Current commit message
 let commit_message;
 // List of chat IDs where rooboot has been used.
@@ -66,53 +70,19 @@ const startBot = async () => {
   stickers_pukki = await bot.getStickerSet("Pukkipack");
   lk_obj = await getLaulukirja();
   banters = await getBanters();
-  commit_message = await getCommitMsg('matias-kovero/rooboot-bot');
+  //commit_message = await getCommitMsg('matias-kovero/rooboot-bot');
 };
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(supportedRestaurant, async msg => {
   const chatId = msg.chat.id;
-  const restaurant = msg.text.split(/ |@/)[0].substring(1); // Take the restaurant name
-  let obj;
-  switch(restaurant) {
-    case 'piato':
-      obj = await getPiato();
-      break;
-    case 'lozzi':
-      obj = await getLozzi();
-      break;
-    case 'maija':
-      obj = await getMaija();
-      break;
-    case 'libri':
-      obj = await getLibri();
-      break;
-    case 'tilia':
-      obj = await getTilia();
-      break;
-    case 'syke':
-      obj = await getSyke();
-      break;
-    case 'rentukka':
-      obj = await getRentukka();
-      break;
-    case 'ylisto':
-      obj = await getYlisto();
-      break;
-    case 'fiilu':
-      obj = await getFiilu();
-      break;
-    case 'ilokivi':
-      obj = await getIlokivi();
-      break;
-    case 'aimo':
-      obj = await getAimo();
-    default:
-      break;
-  }
-  if(obj) {
+  try {
+    const restaurant = msg.text.split(/ |@/)[0].substring(1); // Take the restaurant name
+    let obj = await getMenu(restaurant);
     let response = parseSemma(msg, obj);
     bot.sendMessage(chatId, response, {parse_mode: 'Markdown', disable_notification: true});
-  } else bot.sendMessage(chatId, 'Minulla ongelma', {disable_notification: true});
+  } catch(error) {
+    bot.sendMessage(chatId, 'Oi voi :( '+error.message, {disable_notification: true});
+  }
 });
 /** END --- SEMMA RESTAURANTS --- */
 
@@ -139,17 +109,21 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   if(haku.match(/^\d+$/)) { // Haetaan numerolla
     for(var laulu of laulut) {
       if(laulu.numero == haku) {
-        responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
+        let longest = longestLine(laulu);
+        responseTxt += '<b>'+center(laulu.numero+'. ' + laulu.nimi, longest+1) +'</b>\r\n\r\n'; // 1. Finlandia-hymni
         for(var sae of laulu.sanat) {
-          responseTxt += sae.replace('*', '\\*')+'\r\n'; // We need to escape * or markdown will brake
+          sae = center(sae, longest);
+          responseTxt += sae+'\r\n';
         }
       }
     }
   } else { // Haetaan nimellä
     for(var laulu of laulut) {
       if(laulu.nimi.toLowerCase().includes(haku.toLowerCase())) {
-        responseTxt += '*'+laulu.numero+'. ' + laulu.nimi +'*\r\n'; // 1. Finlandia-hymni
+        let longest = longestLine(laulu);
+        responseTxt += '<b>'+center(laulu.numero+'. ' + laulu.nimi, longest) +'</b>\r\n\r\n'; // 1. Finlandia-hymni
         for(var sae of laulu.sanat) {
+          sae = center(sae, longest);
           responseTxt += sae+'\r\n';
         }
         break;
@@ -158,7 +132,7 @@ bot.onText(/\/laulu(.+)/, async (msg, match) => {
   }
   if(responseTxt == '') responseTxt = 'Ei löydy!';
   bot.sendMessage(chatId, responseTxt, {
-    parse_mode: 'Markdown',
+    parse_mode: "HTML",
     disable_web_page_preview: true
   });
 });
@@ -216,6 +190,7 @@ bot.onText(/\/tapahtumat/, async msg => {
 /** START --- ANIMAL IMAGES --- */
 bot.onText(/\/kissa/, async msg => {
   const chatId = msg.chat.id;
+  return;
   try {
     elaimet.kissat = elaimet.kissat +1;
     bot.sendMessage(chatId, 'Kissat: ' + elaimet.kissat + ' Koirat: ' + elaimet.koirat);
@@ -227,6 +202,7 @@ bot.onText(/\/kissa/, async msg => {
 });
 bot.onText(/\/koira/, async msg => {
   const chatId = msg.chat.id;
+  return;
   try {
     elaimet.koirat = elaimet.koirat +1;
     bot.sendMessage(chatId, 'Kissat: ' + elaimet.kissat + ' Koirat: ' + elaimet.koirat);
@@ -277,7 +253,7 @@ bot.onText(custom, msg => {
   let message = msg.text;
   if(message.length > cLength) {
     let response = message.substring(cLength);
-    bot.sendMessage(secret, response);
+    bot.sendMessage(secret, response, {parse_mode: 'Markdown'});
   }
 });
 bot.on('message', msg => {
@@ -298,6 +274,192 @@ bot.on('message', msg => {
   }
 });
 /** END --- BANTER --- */
+
+/** START --- HYTIT --- */
+
+bot.onText(/\/hytti\s\d\d\d\d/, async msg => {
+  const chatId = msg.chat.id;
+  let response = '';
+  let param = msg.text.slice(7);
+  let f_name = 'Risteilijä';
+  let hytti_num;
+  if(msg.chat.first_name != undefined) {
+    f_name = msg.chat.first_name;
+    msg.chat.last_name ? f_name += ' ' + msg.chat.last_name.charAt(0) : null;
+  } // Priva
+  else if(msg.from != undefined && msg.from.first_name) {
+    f_name = msg.from.first_name;
+    msg.from.last_name ? f_name += ' ' + msg.from.last_name.charAt(0) : null;
+  } // Group
+  else if(msg.chat.username != undefined) f_name = msg.chat.username; // Priva
+  else if(msg.from != undefined && msg.from.username) f_name = msg.from.username; // Group
+  if(param !== undefined) {
+    hytti_num = parseInt(param.trim());
+    if(Number.isInteger(hytti_num)) {
+      if(hytti_num <= 99999) {
+      let lisatty = false;
+      hytit.forEach(hytti => {
+        if(hytti.num === hytti_num) { 
+          hytti.henk.push(f_name);
+          lisatty = true;
+          return true;
+        }
+      });
+      if(!lisatty) {
+        let hytti = {
+          num: hytti_num,
+          henk : [f_name]
+        };
+        hytit.push(hytti);
+      };
+      response = f_name+' liittyi hyttiin '+ hytti_num.toString().padStart(4, '0');
+      } else response = 'Liian pitkä hyttinumero.'
+    } else response = 'Tarkista hytin numero, esim /hytti 1234';
+  } else response = 'Anna hytin numero, esim: /hytti 1234';
+  bot.sendMessage(chatId, response);
+});
+
+bot.onText(/\/hyttirm\s\d\d\d\d/, async msg => {
+  const chatId = msg.chat.id;
+  let response = '';
+  let param = msg.text.slice(9);
+  let f_name = 'Risteilijä';
+  let hytti_num;
+  if(msg.chat.first_name != undefined) {
+    f_name = msg.chat.first_name;
+    msg.chat.last_name ? f_name += ' ' + msg.chat.last_name.charAt(0) : null;
+  } // Priva
+  else if(msg.from != undefined && msg.from.first_name) {
+    f_name = msg.from.first_name;
+    msg.from.last_name ? f_name += ' ' + msg.from.last_name.charAt(0) : null;
+  } // Group
+  else if(msg.chat.username != undefined) f_name = msg.chat.username; // Priva
+  else if(msg.from != undefined && msg.from.username) f_name = msg.from.username; // Group
+  if(param !== undefined) {
+    hytti_num = parseInt(param.trim());
+    if(Number.isInteger(hytti_num)) {
+      if(hytti_num <=99999) {
+        let poistettu = false;
+        for(var i = 0; i < hytit.length; i++) {
+          if(hytit[i].num === hytti_num) {
+            let index = hytit[i].henk.indexOf(f_name);
+            if(index !== -1) {
+              hytit[i].henk.splice(index, 1);
+              poistettu = true;
+              response = f_name+' poistui hytistä '+ hytti_num.toString().padStart(4, '0');
+              if(hytit[i].henk.length <= 0) {
+                hytit.splice(i, 1);
+              }
+              break;
+            }
+          }
+        }
+        if(!poistettu) {
+          response = 'Et ole hytissä ' + hytti_num.toString().padStart(4, '0');
+        };
+      } else response = 'Liian pitkä hyttinumero.';
+    } else response = 'Tarkista hytin numero.'
+  } else response = 'Tarkista hytin numero.';
+  bot.sendMessage(chatId, response);
+});
+
+bot.onText(/\/hytit/, async msg => {
+  const chatId = msg.chat.id;
+  // Sort cabins
+  if(hytit.length > 1) {
+    hytit.sort((a, b) => a.num - b.num ); 
+  };
+  let response = '_Lemmenristeily 2019 hytit:_\r\n';
+  for(var i = 0; i < hytit.length; i++) {
+    response += '*' + hytit[i].num.toString().padStart(4, '0') +'*:';
+    let div = '';
+    hytit[i].henk.forEach(nimi => {
+      response += div + nimi;
+      div = ',';
+    });
+    response += '\r\n';
+  }
+  /*
+  hytit.forEach(hytti => {
+    response += '*' + hytti.num +'*:';
+    let div = '';
+    hytti.henk.forEach(nimi => {
+      response += div + nimi;
+      div = ',';
+    });
+    response += '\r\n';
+  });*/
+  bot.sendMessage(chatId, response, { parse_mode: "Markdown" });
+});
+
+bot.onText(/\/infoMe/, async msg => {
+  const chatId = msg.chat.id;
+  const username = msg.from.username;
+  const f_name = msg.from.first_name;
+  let response = 'Username:' + username;
+  response += "Firstname: " + f_name;
+  bot.sendMessage(chatId, response);
+});
+/** END --- HYTIT --- */
+
+/** START --- PAPUNET --- */
+bot.onText(/\/papu/, async msg => {
+  const chatId = msg.chat.id;
+  let msg_sent = await bot.sendMessage(chatId, 'Menee hetki, haen kuvat', {disable_notification: true});
+  let images = [];
+  try {
+    let params = msg.text.split(' ');
+    let paramText = '';
+    params.shift(); // remove /papu
+    if(params.length <= 0) {
+      bot.editMessageText(`Ei sanoja haettavana...`, {chat_id: chatId, message_id: msg_sent.message_id});
+    }
+    for(var i = 0; i < params.length; i++) {
+        bot.editMessageText(`${i}/${params.length} haettu...`, {chat_id: chatId, message_id: msg_sent.message_id});
+        let img_url = await Papu.kuva(params[i]);
+        images.push(img_url);
+        paramText += params[i] + ' ';
+    };
+    const options = {
+      sources : images,
+      width: 2,
+      height: Math.ceil(images.length/2),
+      imageWidth: 100,
+      imageHeight: 150,
+      spacing: 2,
+      lines: [
+      ],
+    };
+    bot.editMessageText(paramText, {chat_id: chatId, message_id: msg_sent.message_id});
+    var canvas = await createCollage(options);
+    async function saveImg(response, destination) {
+      return new Promise(resolve => {
+        const file = fs.createWriteStream(destination)
+        response.pipe(file)
+        file.on('finish', () => file.close(resolve))
+      });
+    }
+    await saveImg(canvas.pngStream(), './myFile.png');
+    bot.sendPhoto(chatId, './myFile.png');
+  } catch (err) {
+    console.log(err);
+    bot.editMessageText(err, {chat_id: chatId, message_id: msg_sent.message_id});
+  } finally {
+    if(images.length >= 1) {
+      var canvas = await createCollage(options);
+      async function saveImg(response, destination) {
+        return new Promise(resolve => {
+          const file = fs.createWriteStream(destination)
+          response.pipe(file)
+          file.on('finish', () => file.close(resolve))
+        });
+      }
+      await saveImg(canvas.pngStream(), './myFile.png');
+      bot.sendPhoto(chatId, './myFile.png');
+    }
+  }
+})
+/** END --- PAPUNET --- */
 
 /** START --- xxx vai xxx --- */
 bot.on('message', msg => {
@@ -339,7 +501,7 @@ bot.on('message', msg => {
     informed_chats.push(chatId); // Add this chat as informed
     let message = "*I've been updated*\r\n";
     message += commit_message;
-    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+    //bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
   };
 })
 /** END --- Info new commit ---  */
@@ -357,16 +519,6 @@ bot.onText(/\/pukkiparty/, msg => {
   } else bot.sendMessage(chatId, 'Sorry, unable to get Pukkipack stickers');
 });
 /** END --- Pukkiparty Stickers ---  */
-
-/** START --- Countdown Game ---  */
-bot.onText(/\/start/, function onPhotoText(msg){
-  bot.sendGame(msg.chat.id, 'countdown');
-});
-
-bot.on('callback_query', function onCallbackQuery(callbackQuery) {
-  bot.answerCallbackQuery(callbackQuery.id, { url: 'https://countdown-html-game.now.sh/' });
-});
-/** END --- Countdown Game ---  */
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
@@ -408,5 +560,18 @@ function parseSemma(msg, obj) {
   }
   return responseTxt;
 };
+
+
+function longestLine(laulu) {
+  let longest = 0;
+  let sanat = laulu.sanat;
+  sanat.forEach(sae => {
+    let lines = sae.split('\n');
+    lines.forEach(line => {
+      line.length > longest ? longest = line.length : null;
+    });
+  });
+  return longest;
+}
 
 startBot();
