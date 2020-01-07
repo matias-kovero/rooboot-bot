@@ -467,6 +467,7 @@ bot.on('message', msg => {
   const chatId = msg.chat.id;
   const message = msg.text;
   if(message !== undefined) {
+    // Wont trigger if contains: .,!?:;  - add more later if needed
     if(message.includes(' vai ') && !message.match(/[.,!?:;]/)) { // Tarkistetaan löytyykö sana vai
       var sanat = message.split(' vai '); 
       let tulos = Math.floor(Math.random() * Math.floor(sanat.length));
