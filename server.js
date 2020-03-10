@@ -11,7 +11,7 @@ const url = 'https://mk-telegram-bot.eu-gb.mybluemix.net';
 var port = process.env.PORT || 3000;
 const fs = require('fs');
 const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|ylisto|fiilu|ilokivi|rentukka|aimo|uno)(.(h$|yh$)|$|@+)/);
-const Papu = require('./utils/papu.js');
+//const Papu = require('./utils/papu.js');
 const createCollage = require('@settlin/collage');
 
 // FUNCTIONS FROM UTILS
@@ -21,7 +21,8 @@ const getFullEvents = require(__dirname + '/utils/events');
 const { loadCatImage, loadDogImage } = require(__dirname +'/utils/loadImageAnimal');
 const getCommitMsg = require(__dirname + '/utils/commitMsg');
 const getMenu = require('./utils/semma.js');
-
+const korona = require('./utils/korona.js');
+var korona_info = {confirmed: 0, dead: 0};
 var lk_obj;
 var banters;
 var elaimet = {
@@ -70,7 +71,8 @@ const startBot = async () => {
   stickers_pukki = await bot.getStickerSet("Pukkipack");
   lk_obj = await getLaulukirja();
   banters = await getBanters();
-  //commit_message = await getCommitMsg('matias-kovero/rooboot-bot');
+  var korona_init = await korona.getInfo();
+  if(korona_init && korona_init.data) korona_info = { confirmed: korona_init.confirmed, dead: korona_init.dead };
 };
 /**  START ---  SEMMA RESTAURANTS --- */
 bot.onText(supportedRestaurant, async msg => {
@@ -494,18 +496,38 @@ bot.on('message', msg => {
 })
 /** END --- pitäskö/voisko/oisko --- */
 
-/** START --- Info new commit ---  */
-bot.on('message', msg => {
+/** START --- Info new corona ---  */
+bot.on('message', async msg => {
   const chatId = msg.chat.id;
-  if(informed_chats.indexOf(chatId) === -1) console.log('Server:', commit_message);
-  if(informed_chats.indexOf(chatId) === -1 && commit_message) { // Chat isn't informed of new commit.
-    informed_chats.push(chatId); // Add this chat as informed
-    let message = "*I've been updated*\r\n";
-    message += commit_message;
-    //bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
-  };
+  let response = "";
+  try {
+    const data = await korona.getInfo();
+    if(data && data.data && (data.confirmed > korona_info.confirmed || data.dead > korona_info.dead)) {
+      // We should have new info. Check how much
+      if(data.confirmed - korona_info.confirmed > 1 || data.dead - korona_info.dead > 1) { // More than 1 new person.
+        response += '*Uusia tartuntoja:*\r\n';
+        for(var i = korona_info.confirmed; i < data.confirmed; i++) {
+          response += '😷 ' + parseKorona(data.data.confirmed[i]);
+        }
+        for(var i = korona_info.dead; i < data.dead; i++) {
+          response += '💀 ' + parseKorona(data.data.dead[i]);
+        }
+      } else { // Only 1 new person.
+        if(data.confirmed > korona_info.confirmed) {
+          response += '😷 ' + parseKorona(data.data.confirmed[korona_info.confirmed]);
+        } else {
+          response += '💀 ' + parseKorona(data.data.dead[korona_info.dead]);
+        }
+      }
+      // Update our stats
+      korona_info = { confirmed: data.confirmed, dead: data.dead };
+      bot.sendMessage(chatId, response, {parse_mode: 'Markdown', disable_notification: true});
+    }
+  } catch (err) {
+    console.log('Korona:', err);
+  }
 })
-/** END --- Info new commit ---  */
+/** END --- Info new corona ---  */
 
 /** START --- Pukkiparty Stickers ---  */
 bot.onText(/\/pukkiparty/, msg => {
@@ -520,6 +542,28 @@ bot.onText(/\/pukkiparty/, msg => {
   } else bot.sendMessage(chatId, 'Sorry, unable to get Pukkipack stickers');
 });
 /** END --- Pukkiparty Stickers ---  */
+
+bot.onText(/\/korona/, async msg => {
+  const chatId = msg.chat.id;
+  try {
+    const data = await korona.getInfo();
+    if(data && data.data) {
+      response = `*Korona* 🇫🇮\r\n😷 ${data.confirmed}\r\n💀 ${data.dead}\r\n`;
+      bot.sendMessage(chatId, response, {parse_mode: 'Markdown', disable_notification: true});
+    }
+    else {
+      console.log(data);
+      bot.sendMessage(chatId, data.message);
+    }
+  } catch (err) {
+    bot.sendMessage(chatId, ':( ' + error.message, {disable_notification: true});
+  }
+})
+
+bot.onText(/\/dbg/, async msg => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, `Confirmed:${korona_info.confirmed}, Dead:${korona_info.dead}`);
+})
 
 // Supporting function to easily parse Semma API objects
 function parseSemma(msg, obj) {
@@ -573,6 +617,14 @@ function longestLine(laulu) {
     });
   });
   return longest;
+}
+
+function parseKorona(person) {
+  try {
+    return `Sijainti: ${person.healthCareDistrict}, lähde: ${person.infectionSourceCountry}\r\n`;
+  } catch (error) {
+    return '';
+  }
 }
 
 startBot();

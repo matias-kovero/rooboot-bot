@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "private": false,
   "engines": {
-    "node": "8.*"
+    "node": "10.*"
   },
   "scripts": {
     "start": "node server.js"
@@ -26,9 +26,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mongodb": "^3.3.3",
-    "node-horseman": "^3.3.0",
     "node-telegram-bot-api": "^0.30.0",
-    "phantomjs": "^2.1.7",
     "querystring": "^0.2.0",
     "r2": "^2.0.1"
   },
