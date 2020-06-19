@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mongodb": "^3.3.3",
+    "mongoose": "^5.9.19",
     "node-telegram-bot-api": "^0.30.0",
     "querystring": "^0.2.0",
     "r2": "^2.0.1"

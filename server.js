@@ -14,6 +14,17 @@ const supportedRestaurant = new RegExp(/\/(piato|lozzi|maija|libri|tilia|syke|yl
 //const Papu = require('./utils/papu.js');
 const createCollage = require('@settlin/collage');
 
+// MONGO DB stuff
+const mongoose = require("mongoose");
+const db_username = process.env.MONGODB_USERNAME;
+const db_password = process.env.MONGODB_PASSWORD;
+const db_name = "rooboot";
+
+mongoose.connect(
+  `mongodb+srv://${db_username}:${db_password}@roobootcluster-se6uw.mongodb.net/${db_name}?retryWrites=true&w=majority`,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+
 // FUNCTIONS FROM UTILS
 const getLaulukirja = require(__dirname + '/utils/laulukirja');
 const getBanters = require(__dirname + '/utils/banters');
@@ -40,6 +51,9 @@ var banter_ON = [];
 var banter_INFO = [];
 // Sticker Set (Pukki)
 let stickers_pukki;
+
+// Juhannusveikkaus stuff
+const { addVeikkaus, listVeikkaukset, formatRow } = require('./utils/juhannus-veikkaus')
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
@@ -276,6 +290,61 @@ bot.on('message', msg => {
   }
 });
 /** END --- BANTER --- */
+
+/** START --- JUHANNUS --- */
+
+// Lisää veikkaus
+bot.onText(/\/jv \d \d \d/, async msg => {
+  const chatId = msg.chat.id;
+  const numbers = msg.text.slice(4).split(' ');
+
+  let f_name = 'unknown'
+
+  // Set name
+  if(msg.chat.first_name != undefined) {
+    f_name = msg.chat.first_name;
+    msg.chat.last_name ? f_name += ' ' + msg.chat.last_name.charAt(0) : null;
+  } // Priva
+  else if(msg.from != undefined && msg.from.first_name) {
+    f_name = msg.from.first_name;
+    msg.from.last_name ? f_name += ' ' + msg.from.last_name.charAt(0) : null;
+  } // Group
+  else if(msg.chat.username != undefined) f_name = msg.chat.username; // Priva
+  else if(msg.from != undefined && msg.from.username) f_name = msg.from.username; // Group
+
+  // Lisää veikkaus
+  const [traffic, waters, other] = numbers;
+
+  try {
+    await addVeikkaus(f_name, traffic, waters, other);
+    const message = formatRow(f_name, traffic, waters, other);
+    bot.sendMessage(chatId, message);
+  } catch (error) {
+    bot.sendMessage(chatId, e.name + ': ' + e.message);
+  }
+})
+
+// Listaa veikkaukset
+bot.onText(/\/veikkaukset/, async msg => {
+  const chatId = msg.chat.id;
+  try {
+    const veikkaukset = await listVeikkaukset();
+
+    let message = '_Juhannusveikkaus 2020:_\r\n';
+
+    veikkaukset.map(v => {
+      message += formatRow(v.name, v.traffic, v.waters, v.other);
+      message += '\r\n';
+    })
+
+    bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+  } catch (error) {
+    bot.sendMessage(chatId, e.name + ': ' + e.message);
+  }
+})
+
+/** END --- JUHANNUS --- */
+
 
 /** START --- HYTIT --- */
 
