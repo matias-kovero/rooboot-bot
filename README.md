@@ -1,6 +1,10 @@
 # Rooboot - Telegram bot
 
-## Environment variables
+## Environment variables and secrets
+
+### GitHub Secrets
+
+Set `BOT_TOKEN` and `BOT_URL` secrets. `BOT_URL` being the netlify live url.
 
 ### Netlify env variables
 

@@ -1,0 +1,16 @@
+name: Set Webhook
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  set-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HTTP Request Action
+        uses: fjogeleit/http-request-action@v1.4.1
+        with:
+          url: 'https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/setWebhook?url=${{ secrets.BOT_URL }}/bot'
+          method: 'GET'
