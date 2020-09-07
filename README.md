@@ -66,6 +66,7 @@ ___
 ##### Useful to update commands to BotFather
 ```
 help - ask for help
+pukkiparty - send sticker from Pukkipack
 lozzi - use optional [h, yh] 
 maija - use optional [h, yh]
 ylisto - use optional [h, yh]

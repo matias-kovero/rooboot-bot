@@ -4,6 +4,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 import helpModule   from './modules/help';
 import semmaModule  from './modules/semma';
+import pukkiModule  from './modules/pukki';
 
 const token = process.env.BOT_TOKEN;
 if(!token) throw new Error('Please add BOT_TOKEN to env variables.');
@@ -19,6 +20,10 @@ bot.help((ctx: TelegrafContext) => {
 
 bot.hears(semmaRestaurants, (ctx: TelegrafContext) => {
   return semmaModule(ctx)
+})
+
+bot.hears('/pukkiparty', (ctx: TelegrafContext) => {
+  return pukkiModule(ctx)
 })
 
 export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
