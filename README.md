@@ -38,8 +38,9 @@ Go to above url in your browser and replace the token and the url. This tells th
 `src/modules/example.ts`
 ```ts
 import { TelegrafContext } from "telegraf/typings/context";
+import { Message } from "telegraf/typings/telegram-types";
 
-export default async(ctx: TelegrafContext) => {
+export default async(ctx: TelegrafContext): Promise<Message> => {
   return ctx.replyWithMarkdown(`Example`);
 }
 ```
@@ -55,3 +56,24 @@ bot.hears('/example', (ctx: TelegrafContext) => {
 
 ## How to publish
 `git push` to this repo starts the build process on Netlify and the GitHub action takes care of setting the bot's webhook url
+___
+
+## Current commands
+##### Useful to update commands to BotFather
+```
+help - ask for help
+lozzi - use optional [h, yh] 
+maija - use optional [h, yh]
+ylisto - use optional [h, yh]
+belvedere - use optional [h, yh]
+syke - use optional [h, yh]
+piato - use optional [h, yh]
+novelli - use optional [h, yh]
+tilia - use optional [h,yh]
+uno - use optional [h, yh]
+rentukka - use optional [h, yh]
+siltavouti - use optional [h, yh]
+aimo - use optional [h, yh]
+fiilu - use optional [h, yh]
+ilokivi - use optional [h, yh]
+```
