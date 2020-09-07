@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+  command = "yarn build"
+  functions = "functions"
+
+# this is actually a Rewrite
+# totally optional, but makes up for
+# a much better UX
+[[redirects]]
+  from = "/bot"
+  to="/.netlify/functions/bot"
+  status = 200

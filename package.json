@@ -1,0 +1,23 @@
+{
+  "name": "rooboot-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot - Rooboot",
+  "main": "functions/bot.js",
+  "repository": "https://github.com/matias-kovero/rooboot-bot.git",
+  "author": "Matias Kovero",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dev": "netlify dev --live"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.62",
+    "@types/node": "^14.6.4",
+    "netlify-cli": "^2.61.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "telegraf": "^3.38.0"
+  }
+}
