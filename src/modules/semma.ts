@@ -24,7 +24,11 @@ interface SemmaData {
    * Restaurants weekly menu.  
    * Shows only the remaining days of the week, including today.
    */
-  MenusForDays?: Array<DailyMenu>
+  MenusForDays?: Array<DailyMenu>,
+  /**
+   * Response error.
+   */
+  ErrorText?: string | null
 }
 
 interface DailyMenu {
@@ -34,7 +38,6 @@ interface DailyMenu {
   Date?: string,
   /**
    * The time when the restaurant serves lunch.  
-   * When it is null it means the restaurant is closed.
    */
   LunchTime?: string | null,
   /**
@@ -103,7 +106,7 @@ const parseSemma = (data: SemmaData, ctx: TelegrafContext): string => {
   } else if(!week[num]) return 'Lista ei ole vielä tiedossa';
   const day = week[num];
   
-  const open_time = day.LunchTime;
+  const open_time = day.LunchTime ? day.LunchTime : '';
   const food = day.SetMenus;
   
   const dayTxt = num != 0 ? (num == 1 ? '_Huomenna_':'_Ylihuomenna_') : '_Tänään_';
@@ -111,7 +114,7 @@ const parseSemma = (data: SemmaData, ctx: TelegrafContext): string => {
   // remove duplicate SetMenus ex. "Lounas" 2 times in a row
   let lastMenu = "";
 
-  if (open_time) {
+  if (food.length) {
     responseTxt += 'Lounas: ' + open_time + '\r\n';
     for (let i = 0; i < food.length; i++) {
       if(food[i].Name || food[i].Name !== lastMenu) {
