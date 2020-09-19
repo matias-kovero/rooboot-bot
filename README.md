@@ -8,7 +8,7 @@ Set `BOT_TOKEN` and `BOT_URL` secrets. `BOT_URL` being the netlify live url.
 
 ### Netlify env variables
 
-Set `BOT_TOKEN`.
+Set `BOT_TOKEN`, `MONGODB_USERNAME` and `MONGODB_PASSWORD`.
 
 ## How to dev
 
