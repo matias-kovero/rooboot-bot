@@ -1,0 +1,15 @@
+name: Daily comic
+
+on:
+  schedule:
+    - cron: "0 6 * * 1-6"
+
+jobs:
+  set-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HTTP Request Action
+        uses: fjogeleit/http-request-action@v1.4.1
+        with:
+          url: '${{ secrets.BOT_URL }}/timed'
+          method: 'GET'
