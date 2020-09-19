@@ -1,5 +1,20 @@
 # Rooboot - Telegram bot
 
+[<p align="center"><img width="200" src="./docs/images/logo.png"></p>](./docs/images/logo.png)
+
+[![https://telegram.me/Rooboot_bot](https://img.shields.io/badge/💬%20Chat%20with-Rooboot__Bot-blue.svg)](https://telegram.me/Rooboot_bot)
+
+Built using [Telegraf](https://telegraf.js.org/) and hosted on [Netlify](https://www.netlify.com/).
+
+## Table of contents
+1. [Environment variables](#Environment-variables-and-secrets)
+2. [How to dev](#How-to-dev)
+    - [CLI commands](#Install-dependencies)
+    - [Set bot webhook](#Set-bot-webhook)
+    - [Creating modules](#Adding-own-modules)
+3. [How to publish](#How-to-publish)
+4. [Commands](#Current-commands)
+
 ## Environment variables and secrets
 
 ### GitHub Secrets
@@ -63,10 +78,11 @@ bot.hears('/example', (ctx: TelegrafContext) => {
 ___
 
 ## Current commands
-##### Useful to update commands to BotFather
 ```
-help - ask for help
 pukkiparty - send sticker from Pukkipack
+tilaafp - subscribe for daily fingerpori
+perufptilaus - unsubscribe from daily fingerpori
+help - ask for help
 lozzi - use optional [h, yh] 
 maija - use optional [h, yh]
 ylisto - use optional [h, yh]
@@ -82,3 +98,4 @@ aimo - use optional [h, yh]
 fiilu - use optional [h, yh]
 ilokivi - use optional [h, yh]
 ```
+##### Useful when updating commands with BotFather
