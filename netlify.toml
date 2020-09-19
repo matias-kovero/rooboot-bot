@@ -10,3 +10,9 @@
   from = "/bot"
   to="/.netlify/functions/bot"
   status = 200
+  
+# This rule just shortens our scheduled URL.
+[[redirects]]
+  from = "/timed"
+  to="/.netlify/functions/scheduledMessage"
+  status = 200
