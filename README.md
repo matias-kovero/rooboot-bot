@@ -2,7 +2,10 @@
 
 [<p align="center"><img width="200" src="./docs/images/logo.png"></p>](./docs/images/logo.png)
 
-[![https://telegram.me/Rooboot_bot](https://img.shields.io/badge/💬%20Chat%20with-Rooboot__Bot-blue.svg)](https://telegram.me/Rooboot_bot)
+[![https://telegram.me/Rooboot_bot](https://img.shields.io/badge/Chat%20with-Rooboot__Bot-blue.svg?logo=Telegram)](https://telegram.me/Rooboot_bot)
+![Netlify](https://img.shields.io/netlify/cecd4c8e-d256-43a5-97e9-9d225157ef34?label=build&logo=Netlify)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/matias-kovero/rooboot-bot/Set%20Webhook?label=Set%20Webhook&logo=Github)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/matias-kovero/rooboot-bot/Daily%20comic?label=Daily%20Comic&logo=Github)
 
 Built using [Telegraf](https://telegraf.js.org/) and hosted on [Netlify](https://www.netlify.com/).
 
