@@ -5,7 +5,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import helpModule   from './modules/help';
 import semmaModule  from './modules/semma';
 import pukkiModule  from './modules/pukki';
-import comicModule from './modules/fingerpori';
+import comicModule  from './modules/fingerpori';
 
 const token = process.env.BOT_TOKEN;
 if(!token) throw new Error('Please add BOT_TOKEN to env variables.');
