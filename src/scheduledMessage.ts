@@ -1,8 +1,8 @@
-import { Telegraf } from 'telegraf';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import webRequest from './utils/webRequest';
 import { IFingerporiChat } from './utils/database/models/fingerpori';
 import { getChats } from './utils/database/queries/fingerpori';
+import { bot } from './bot';
 
 interface FingerporiData {
   publication_date: string,
@@ -13,12 +13,7 @@ interface FingerporiData {
   copyright: string,
 };
 
-const token = process.env.BOT_TOKEN;
-if(!token) throw new Error('Please add BOT_TOKEN to env variables.');
-
 const fingerpori_url = 'https://fingerpori.vercel.app/daily';
-
-const bot = new Telegraf(token);
 
 const sendDailyComic = async(): Promise<number> => {
   // Get our Fingerpori comic
@@ -29,6 +24,7 @@ const sendDailyComic = async(): Promise<number> => {
   const chats: IFingerporiChat[] = await getChats();
 
   console.timeLog('trackTime', `> Sending images to chats...`);
+
   chats.forEach(chat => {
     bot.telegram.sendPhoto(chat.chat_id, data.image.big);
   });
@@ -39,7 +35,7 @@ const sendDailyComic = async(): Promise<number> => {
 export async function handler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   try {
     console.time('trackTime');
-    
+
     console.timeLog('trackTime', `> Starting scheduled functions...`);
     const count = await sendDailyComic();
     console.timeLog('trackTime', `> Sent to ${count} chat(s).`);

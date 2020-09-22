@@ -10,7 +10,7 @@ import comicModule  from './modules/fingerpori';
 const token = process.env.BOT_TOKEN;
 if(!token) throw new Error('Please add BOT_TOKEN to env variables.');
 
-const bot = new Telegraf(token);
+export const bot = new Telegraf(token);
 
 // If a module works on multiple commands, use RegExp to specify all commands to the module.
 const semmaRestaurants = new RegExp(/\/(lozzi|maija|ylisto|belvedere|syke|piato|novelli|tilia|uno|rentukka|siltavouti|aimo|fiilu|ilokivi)(.(h$|yh$)|$|@Rooboot_bot)/);

@@ -13,3 +13,4 @@ jobs:
         with:
           url: '${{ secrets.BOT_URL }}/timed'
           method: 'GET'
+          timeout: 10000
