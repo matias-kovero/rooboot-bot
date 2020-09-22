@@ -2,7 +2,7 @@ name: Daily comic
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 6 * * 1-6"
 
 jobs:
   send-comics:

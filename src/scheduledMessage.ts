@@ -24,11 +24,9 @@ const sendDailyComic = async(): Promise<number> => {
   const chats: IFingerporiChat[] = await getChats();
 
   console.timeLog('trackTime', `> Sending images to chats...`);
-
-  chats.forEach(chat => {
-    bot.telegram.sendPhoto(chat.chat_id, data.image.big);
-  });
-
+  const promises = chats.map(chat => bot.telegram.sendPhoto(chat.chat_id, data.image.big));
+  await Promise.all(promises);
+  
   return chats.length;
 }
 
