@@ -6,7 +6,9 @@ const zeroPad = (num: number, amount: number) => String(num).padStart(amount, '0
 
 export default async(ctx: TelegrafContext): Promise<Message> => {
   const chat_id = ctx.chat?.id.toString();
-  const text = ctx.message.text;
+  let text = ctx.message.text;
+  // If bot is called from a group, remove bot name from the text.
+  if(text.includes('@')) text = text.split('@')[0];  
   let message;
 
   switch(text) {
