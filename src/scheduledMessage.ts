@@ -4,7 +4,7 @@ import { IFingerporiChat } from './utils/database/models/fingerpori';
 import { getChats } from './utils/database/queries/fingerpori';
 import { bot } from './bot';
 
-interface FingerporiData {
+interface ComicData {
   publication_date: string,
   image: {
     small: string,
@@ -13,12 +13,12 @@ interface FingerporiData {
   copyright: string,
 };
 
-const fingerpori_url = 'https://fingerpori.vercel.app/daily';
+const fingerpori_url = 'https://hs-comics.vercel.app/fingerpori';
 
 const sendDailyComic = async(): Promise<number> => {
   // Get our Fingerpori comic
   console.timeLog('trackTime', `> Getting images from api...`);
-  const data: FingerporiData = await webRequest(fingerpori_url);
+  const data: ComicData = await webRequest(fingerpori_url);
   // Get all chats where we want to send our comic strip.
   console.timeLog('trackTime', `> Getting subscribed chats from DB...`);
   const chats: IFingerporiChat[] = await getChats();
