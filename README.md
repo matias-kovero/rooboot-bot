@@ -60,10 +60,9 @@ Go to above url in your browser and replace the token and the url. This tells th
 `src/modules/example.ts`
 ```ts
 import { TelegrafContext } from "telegraf/typings/context";
-import { Message } from "telegraf/typings/telegram-types";
 
-export default async(ctx: TelegrafContext): Promise<Message> => {
-  return ctx.replyWithMarkdown(`Example`);
+export default async(ctx: TelegrafContext) => {
+  await ctx.replyWithMarkdown(`Example reply from bot.`);
 }
 ```
 
@@ -71,9 +70,7 @@ export default async(ctx: TelegrafContext): Promise<Message> => {
 ```ts
 import exampleModule from './modules/example';
 
-bot.hears('/example', (ctx: TelegrafContext) => {
-  return exampleModule(ctx)
-})
+bot.command('example', (ctx) => exampleModule(ctx))
 ```
 
 ## How to publish
