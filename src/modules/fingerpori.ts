@@ -2,6 +2,8 @@ import { TelegrafContext } from "telegraf/typings/context";
 import { Message } from "telegraf/typings/telegram-types";
 import { addChat, removeChat } from '../utils/database/queries/fingerpori';
 
+const zeroPad = (num: number, amount: number) => String(num).padStart(amount, '0');
+
 export default async(ctx: TelegrafContext): Promise<Message> => {
   const chat_id = ctx.chat?.id.toString();
   const text = ctx.message.text;
@@ -12,7 +14,7 @@ export default async(ctx: TelegrafContext): Promise<Message> => {
       const status = await addChat(chat_id);
       const state = status != null ? 'already' : 'now';
       const t = new Date();
-      message = `You are ${state} subcribed for daily comics!\r\nThey should arrive ~ _06:00 UTC_\r\nTime now: _${t.getUTCHours()}:${t.getUTCMinutes()} UTC_`;
+      message = `You are ${state} subcribed for daily comics!\r\nThey should arrive ~ _06:00 UTC_\r\nTime now: _${zeroPad(t.getUTCHours(), 2)}:${zeroPad(t.getUTCMinutes(), 2)} UTC_`;
       break;
     case '/perufptilaus':
       const response = await removeChat(chat_id);
